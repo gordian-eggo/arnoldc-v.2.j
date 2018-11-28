@@ -1,0 +1,54 @@
+ // if (av_match.Success) {
+
+                    //     var av_token = Tuple.Create("Keyword", av_match.Value);
+                    //     symbol_table.Add(i, av_token);
+                    //     i = i + 1;
+
+                    //     if (integer_match.Success) {
+
+                    //         var integer_token = Tuple.Create("Integer literal", integer_match.Value);
+                    //         symbol_table.Add(i, integer_token);
+                    //         i = i + 1;
+
+                    //     } else if (variable_name_match.Success) {
+
+                    //         var variable_token = Tuple.Create("Variable name", variable_name_match.Value);
+                    //         symbol_table.Add(i, variable_token);
+                    //         i = i + 1;
+
+                    //     } else if (macro_match.Success) {
+
+                    //         var macro_token = Tuple.Create("False macro", macro_match.Value);
+                    //         symbol_table.Add(i, macro_token);
+                    //         i = i + 1;
+
+                    //     } else if (print_match.Success) {
+
+                    //         var print_token = Tuple.Create("Keyword", print_match.Value);
+                    //         symbol_table.Add(i, print_token);
+                    //         i = i + 1;
+
+
+                    //         if (integer_match.Success) {
+
+                    //             var integer_token = Tuple.Create("Integer literal", integer_match.Value);
+                    //             symbol_table.Add(i, integer_token);
+                    //             i = i + 1;
+
+                    //         } else if (variable_name_match.Success) {
+
+                    //             var variable_token = Tuple.Create("Variable name", variable_name_match.Value);
+                    //             symbol_table.Add(i, variable_token);
+                    //             i = i + 1;
+
+                    //         } else if (macro_match.Success) {
+
+                    //             var macro_token = Tuple.Create("Macro", macro_match.Value);
+                    //             symbol_table.Add(i, macro_token);
+                    //             i = i + 1;
+
+                    //         }
+
+                    //     }
+
+                    // }

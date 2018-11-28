@@ -1,0 +1,6 @@
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/bin/Debug/ArnoldC-interpreter.exe
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/bin/Debug/ArnoldC-interpreter.pdb
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/obj/x86/Debug/ArnoldC-interpreter.csprojResolveAssemblyReference.cache
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/obj/x86/Debug/ArnoldC-interpreter.csproj.CoreCompileInputs.cache
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/obj/x86/Debug/ArnoldC-interpreter.exe
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/obj/x86/Debug/ArnoldC-interpreter.pdb
