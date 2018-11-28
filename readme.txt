@@ -34,6 +34,7 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 				 NOTE: variable names cannot have special characters like _/&/%/$ and so on. This counts as a bug, but the fix is a bit more advanced than we have time for at the moment.
 
 		  1957H: falling out with Waldo is the last straw in a haystack of issues so will resume code alone. Adjusted variable names for  			   readability again, for the last time.
+		  
 		  2343H: Fixed the bug where variable names are allowed to have capital letters. Due to time constraints, I might have to assume that 		   the user will adopt a more or less conventional variable naming scheme far from the likes of h4xx0r style.
 
 		  2352H: Partially fixed the bug where integer literals are read as integer literals and identifiers. Moved the conditional loops for 		   it into pre-existing keyword conditional loops.
@@ -65,7 +66,17 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 		  		 > BECAUSE I'M GOING TO SAY PLEASE isn't being read. (Fixed as of 1453H)
 
 11-28-18, 1920H: Improved the UI and added the first functionality for the Choose File button. 
-		  2000H: Removed functionality for Choose File button due to an error that I didn't know how to debug. Fixed button 	   and label sizes. Not entirely sure how to implement some functionalities but [deleted] that. 
+
+		  2000H: Removed functionality for Choose File button due to an error that I didn't know how to debug. Fixed button and label sizes. 		   Not entirely sure how to implement some functionalities but [deleted] that. 
+
+11-29-18, 0344H: Tried to make code block for addressing the last unresolved error found on 11-22-18 at 1448H. Did not work.
+
+		  0412H: Successfully made separate class for lexical analyzer. Will probably have to put the syntax and semantic analyzer in that same 	   class due to time constraints. Will also have to work around the last error that I mentioned.
+
+		  0509H: Tried to fiddle with it more. Still not working. Naiirita na ako tbh.
+		  0519H: Ayaw niya talaga mumsh. One last try, tas magi-iba na ako ng game plan.
+		  0534H: Mumsh ayaw talaga. Aayusin ko na lang gamit syntax analyzer, tutal inuupdate naman nun yung symbol table.
+
 
 
 COMMENTS ON SYNTAX:
