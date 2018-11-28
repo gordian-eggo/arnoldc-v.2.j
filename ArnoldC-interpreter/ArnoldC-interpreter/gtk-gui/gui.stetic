@@ -5,9 +5,10 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../bin/Debug/ArnoldC-interpreter.exe" internal="true" />
+    <widget-library name="../../../../../../../../../../usr/lib/monodevelop/AddIns/MonoDevelop.GtkCore/libstetic.dll" />
+    <widget-library name="../bin/Release/ArnoldC-interpreter.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="888 511">
+  <widget class="Gtk.Window" id="MainWindow" design-size="872 492">
     <property name="MemberName" />
     <property name="Title" translatable="yes">ArnoldC Interpreter</property>
     <property name="WindowPosition">CenterOnParent</property>
@@ -27,11 +28,11 @@
                 <child>
                   <widget class="Gtk.Button" id="button5">
                     <property name="MemberName" />
+                    <property name="WidthRequest">139</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Choose FIle</property>
                     <property name="UseUnderline">True</property>
-                    <signal name="Clicked" handler="open_file_selection" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -41,12 +42,24 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.Label" id="file_name">
+                    <property name="MemberName" />
+                    <property name="WidthRequest">148</property>
+                    <property name="LabelProp" translatable="yes">No file chosen</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
                 </child>
               </widget>
               <packing>
                 <property name="Position">0</property>
                 <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
             <child>
@@ -56,7 +69,7 @@
                 <child>
                   <widget class="Gtk.Label" id="lexemes">
                     <property name="MemberName" />
-                    <property name="Xpad">125</property>
+                    <property name="WidthRequest">278</property>
                     <property name="LabelProp" translatable="yes">LEXEMES</property>
                   </widget>
                   <packing>
@@ -69,7 +82,7 @@
                 <child>
                   <widget class="Gtk.Label" id="syymbol_table">
                     <property name="MemberName" />
-                    <property name="Xpad">90</property>
+                    <property name="WidthRequest">289</property>
                     <property name="LabelProp" translatable="yes">SYMBOL TABLE</property>
                   </widget>
                   <packing>
@@ -106,6 +119,7 @@
                 <child>
                   <widget class="Gtk.TextView" id="textview1">
                     <property name="MemberName" />
+                    <property name="WidthRequest">0</property>
                     <property name="CanFocus">True</property>
                     <property name="ShowScrollbars">True</property>
                     <property name="Text" translatable="yes" />
@@ -139,7 +153,7 @@
                 <child>
                   <widget class="Gtk.Label" id="classification_column">
                     <property name="MemberName" />
-                    <property name="Xpad">24</property>
+                    <property name="WidthRequest">131</property>
                     <property name="LabelProp" translatable="yes">Classification</property>
                   </widget>
                   <packing>
@@ -159,7 +173,7 @@
                 <child>
                   <widget class="Gtk.Label" id="lexeme_column">
                     <property name="MemberName" />
-                    <property name="Xpad">35</property>
+                    <property name="WidthRequest">117</property>
                     <property name="LabelProp" translatable="yes">Lexeme</property>
                   </widget>
                   <packing>
@@ -219,7 +233,7 @@
                 <child>
                   <widget class="Gtk.Label" id="identifier_column">
                     <property name="MemberName" />
-                    <property name="Xpad">37</property>
+                    <property name="WidthRequest">132</property>
                     <property name="LabelProp" translatable="yes">Identifier</property>
                   </widget>
                   <packing>
@@ -237,7 +251,7 @@
                 <child>
                   <widget class="Gtk.Label" id="value_column">
                     <property name="MemberName" />
-                    <property name="Xpad">48</property>
+                    <property name="WidthRequest">141</property>
                     <property name="LabelProp" translatable="yes">Value</property>
                   </widget>
                   <packing>
@@ -285,36 +299,17 @@
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Frame" id="frame3">
+              <placeholder />
+            </child>
+            <child>
+              <widget class="Gtk.HSeparator" id="hseparator1">
                 <property name="MemberName" />
-                <property name="ShadowType">None</property>
-                <child>
-                  <widget class="Gtk.Alignment" id="GtkAlignment">
-                    <property name="MemberName" />
-                    <property name="Xalign">0</property>
-                    <property name="Yalign">0</property>
-                    <property name="LeftPadding">12</property>
-                    <child>
-                      <placeholder />
-                    </child>
-                  </widget>
-                </child>
-                <child>
-                  <widget class="Gtk.Label" id="GtkLabel1">
-                    <property name="MemberName" />
-                    <property name="LabelProp" translatable="yes">Console</property>
-                    <property name="UseMarkup">True</property>
-                    <property name="UseUnderline">True</property>
-                    <property name="Wrap">True</property>
-                  </widget>
-                  <packing>
-                    <property name="type">label_item</property>
-                  </packing>
-                </child>
               </widget>
               <packing>
-                <property name="Position">1</property>
+                <property name="Position">2</property>
                 <property name="AutoSize">True</property>
+                <property name="Expand">False</property>
+                <property name="Fill">False</property>
               </packing>
             </child>
           </widget>
