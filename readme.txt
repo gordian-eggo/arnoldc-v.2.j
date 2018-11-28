@@ -64,6 +64,8 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		  		 > BECAUSE I'M GOING TO SAY PLEASE isn't being read. (Fixed as of 1453H)
 
+11-28-18, 1920H: Improved the UI and added the first functionality for the Choose File button. 
+		  2000H: Removed functionality for Choose File button due to an error that I didn't know how to debug. Fixed button 	   and label sizes. Not entirely sure how to implement some functionalities but [deleted] that. 
 
 
 COMMENTS ON SYNTAX:

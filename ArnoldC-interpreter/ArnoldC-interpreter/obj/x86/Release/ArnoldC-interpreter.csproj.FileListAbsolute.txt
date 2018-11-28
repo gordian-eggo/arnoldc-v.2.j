@@ -1,0 +1,6 @@
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/obj/x86/Release/ArnoldC-interpreter.csproj.CoreCompileInputs.cache
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/bin/Release/ArnoldC-interpreter.exe
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/bin/Release/libstetic.dll
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/bin/Release/libstetic.xml
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/bin/Release/libstetic.dll.config
+/media/seraph/DATA/32ce9bca2117dd3835e2b1/CMSC/CMSC 124/ArnoldC-Interpreter/ArnoldC-interpreter/ArnoldC-interpreter/obj/x86/Release/ArnoldC-interpreter.exe
