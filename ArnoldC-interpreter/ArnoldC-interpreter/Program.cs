@@ -20,6 +20,9 @@ namespace ArnoldCinterpreter {
 
             Lexer lexer = new Lexer();
             Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer();
+            Parser parser = new Parser();
+            parser.main_method(lexeme_dictionary);
+            parser.arithmetic_ops(lexeme_dictionary);
 
         }
     }

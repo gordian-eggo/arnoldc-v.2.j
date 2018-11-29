@@ -79,6 +79,12 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		  1200H: Improved the Lexer class. It now has a method that will return a dictionary of lexemes for the syntax analyzer.
 
+		  1252H: Parser can now (properly?) detect main method keywords IT'S SHOWTIME and YOU HAVE BEEN TERMINATED. Based process off of Team 		 PLA LOLcode interpreter. Checked https://www.geeksforgeeks.org/symbol-table-compiler/ and it doesn't say that this knowledge 		 should be add to the symbol table so will leave it alone for now.
+
+		  1311H: Tried to make a master parse_file() function that will do all parser methods in one function. Not sure if it's working or 		   infinite looping so will leave it alone for the meantime. As for string/variable identifier error mentioned earlier, might 		   just ignore it? Wil explain the logic at a later date.
+
+		  1343H: Error in the arithmetic parser, but nothing a bit more time won't fix.
+
 
 
 COMMENTS ON SYNTAX:
