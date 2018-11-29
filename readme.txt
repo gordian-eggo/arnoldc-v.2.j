@@ -71,11 +71,13 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 11-29-18, 0344H: Tried to make code block for addressing the last unresolved error found on 11-22-18 at 1448H. Did not work.
 
-		  0412H: Successfully made separate class for lexical analyzer. Will probably have to put the syntax and semantic analyzer in that same 	   class due to time constraints. Will also have to work around the last error that I mentioned.
+		  0412H: Successfully made separate class for lexical analyzer. Will probably have to put the syntax and semantic analyzer in that 	 		same class due to time constraints. Will also have to work around the last error that I mentioned.
 
 		  0509H: Tried to fiddle with it more. Still not working. Naiirita na ako tbh.
 		  0519H: Ayaw niya talaga mumsh. One last try, tas magi-iba na ako ng game plan.
 		  0534H: Mumsh ayaw talaga. Aayusin ko na lang gamit syntax analyzer, tutal inuupdate naman nun yung symbol table.
+
+		  1200H: Improved the Lexer class. It now has a method that will return a dictionary of lexemes for the syntax analyzer.
 
 
 

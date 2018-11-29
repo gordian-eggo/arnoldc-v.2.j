@@ -18,7 +18,8 @@ namespace ArnoldCinterpreter {
             // win.Show();
             // Application.Run();
 
-            Lexer lexical_analyzer = new Lexer();
+            Lexer lexer = new Lexer();
+            Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer();
 
         }
     }
