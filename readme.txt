@@ -85,6 +85,14 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		  1343H: Error in the arithmetic parser, but nothing a bit more time won't fix.
 
+12-1-18, 1024H: Beginning proper work a day late, didn't finish reviewer on time, too tired. Ma'am suggests that I save each string then 					check if it's a variable identifier or something like that, but no luck on my end. Will have to try either skirting around the 				   wrong line in the lexeme_dict (which is going to take up a lot of code) or making an algorithm to remove the offending lines				    from the lexeme_dict. I think the latter will be more effective. No progress on UI yet. If I'm feeling my way anywhere, it's 				 with the UI.
+
+		 1042H: Figured out how to access individual dictionary entries. The latter option of making an algorithm to remove offending lines 	   just might be feasible.
+
+		 1100H: Encountered SystemInvalidOperationException while removing the offending line from the dictionary. Researched possible cures 		and found one suggesting that I make a copy of the dictionary then iterate over that, and remove the target from the original 		 dictionary once it's found in the copy. Link in references section.
+
+		 1110H: Successfully removed the offending line, ready to test with parser.
+
 
 
 COMMENTS ON SYNTAX:
@@ -107,3 +115,7 @@ COMMENTS ON SYNTAX:
 	> you can't put a GET TO THE CHOPPER loop and/or a HEY CHRISTMAS TREE variable declaration inside a previous GET TO THE CHOPPER loop
 	> you can't put a print statement between HEY CHRISTMAS TREE and YOU SET US UP
 	> you can't put if statements/if-else statements inside a GET TO THE CHOPPER loop
+
+References:
+
+	https://stackoverflow.com/questions/15057712/why-am-i-getting-an-exception-invalidoperationexception

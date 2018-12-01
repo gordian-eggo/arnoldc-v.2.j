@@ -11,9 +11,12 @@ namespace ArnoldCinterpreter {
     public class Parser {
 
     	Dictionary<int, Tuple<string, string>> symbol_table = new Dictionary<int, Tuple<string, string>>();
+    	List<List<string>> program_expressions = new List<List<string>>();
+    	
     	/*
 			solid_index is for the main thing being parsed, flexi_index is for adjusting the symbol table.
     	*/
+
     	// int solid_index = 1;		
     	// int flexi_index = 1;
 		bool valid_main_method;
@@ -25,6 +28,7 @@ namespace ArnoldCinterpreter {
 			int lexeme_count = lexeme_collection.Count();
 
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
+
 				if (lexeme.Key == 1) {
 					// Console.WriteLine("got IT'S SHOWTIME");
 					main_method_expr.Add(lexeme.Value.Item2);
@@ -45,10 +49,12 @@ namespace ArnoldCinterpreter {
 
 		}    	
 
+		// prioritize this!
     	public void talk_to_the_hand(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 
     	}
 
+    	// prioritize this!
     	public void arithmetic_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
 			List<string> arithmetic_expr = new List<string>();
@@ -99,6 +105,7 @@ namespace ArnoldCinterpreter {
 			
 		}  
 
+		// prioritize this!
 		public void assign_variable(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
 		}    	  	

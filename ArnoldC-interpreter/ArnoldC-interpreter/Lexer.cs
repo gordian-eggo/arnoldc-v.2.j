@@ -251,6 +251,7 @@ namespace ArnoldCinterpreter {
 	
                 	foreach (Match string_literal in string_literals) {         // catches string literals
                     	var token_input = Tuple.Create("String literal", string_literal.Groups[1].Value);
+                        Console.WriteLine(token_input.Item1 + ", " + token_input.Item2);
                     	lexeme_dict.Add(i, token_input);
                     	i = i + 1;
                 	}
@@ -259,6 +260,29 @@ namespace ArnoldCinterpreter {
             }	
 
             // uncomment to check if symbol table's complete
+            foreach (KeyValuePair<int, Tuple<string, string>> item in lexeme_dict) {
+                Console.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
+            }
+
+            // make a copy of the original lexeme dictionary
+            Dictionary<int, Tuple<string, string>> lex_dict_copy = new Dictionary<int, Tuple<string, string>>(lexeme_dict);
+
+            foreach (KeyValuePair<int, Tuple<string, string>> item in lex_dict_copy) {
+                if ((item.Value.Item2 == "TALK TO THE HAND") && (lex_dict_copy[item.Key + 2].Item1 == "String literal")) {
+                    Console.WriteLine("Found it! " + lex_dict_copy[item.Key + 2].Item1);
+                    if (lex_dict_copy[item.Key + 1].Item1 == "Variable identifier") {
+                        Console.WriteLine("Found the offending line!");
+                        try {
+                            lexeme_dict.Remove(item.Key + 1);
+                        } catch (Exception e) {
+                            Console.WriteLine(e);
+                        }
+                        Console.WriteLine("Removed it!");
+                    }
+
+                }
+            }
+
             foreach (KeyValuePair<int, Tuple<string, string>> item in lexeme_dict) {
                 Console.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
             }
