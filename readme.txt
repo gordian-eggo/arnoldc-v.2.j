@@ -105,6 +105,10 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1205H: Reset program version but forgot to copy of readme.txt hays. Having trouble accessing lists in lists.
 
+		 1253H: Successfully added assign_var() functionality. I might cry pero konti lang.
+
+		 1341H: Found new error while fixing talk_to_the_hand(). Strings like "3" are being read as integer literals.
+
 
 
 
@@ -112,6 +116,7 @@ ERROR LIST:
 
 	(1) In main_method(), in Parser.cs: Wrong item getting written to expression list. [Fixed as of 0857H, 12-2-18]
 	(2) Missing keys in dictionary due to deletion. [Fixed as pf 0857H, 12-2-18]
+	(3) Strings like "3" are being read as integer literals.
 
 
 

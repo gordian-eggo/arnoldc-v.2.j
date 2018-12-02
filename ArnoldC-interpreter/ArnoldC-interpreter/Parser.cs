@@ -21,13 +21,15 @@ namespace ArnoldCinterpreter {
     	// int flexi_index = 1;
 		bool valid_main_method;
 
-		// finished
+		public List<List<string>> get_program_expressions() {
+			return program_expressions;
+		}
+
+		// finished!
 		public void main_method(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 
 			List<string> main_method_expr = new List<string>();
 			int lexeme_count = lexeme_collection.Count();
-
-			Console.WriteLine(lexeme_count);
 
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
 
@@ -40,7 +42,7 @@ namespace ArnoldCinterpreter {
 
 			if (main_method_expr.Contains("IT'S SHOWTIME") && main_method_expr.Contains("YOU HAVE BEEN TERMINATED")) {
 				valid_main_method = true;
-				Console.WriteLine("Main method valid.");
+				program_expressions.Add(main_method_expr);
 			} else if (!main_method_expr.Contains("IT'S SHOWTIME")) {
 				Console.WriteLine("Error: Invalid main method. Missing keyword IT'S SHOWTIME.");
 			} else if (!main_method_expr.Contains("YOU HAVE BEEN TERMINATED")) {
@@ -49,32 +51,54 @@ namespace ArnoldCinterpreter {
 
 		}    	
 
-		// prioritize this!
+		// finished!
 		public void assign_variable(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 
-			List<string> hey_christmas_tree = new List<string>();
-			List<string> you_set_us_up = new List<string>();
+			List<List<string>> temp = new List<List<string>>();
+			List<string> assign_var = new List<string>();
+			
 			string temp_str;
-			int expression_size = 2;
+			// size is 4 because variable assignment in ArnoldC needs
+			// both HEY CHRISTMAS TREE and YOU SET US UP to function
+			// so I thought it might be easier on the semantic analyzer later on if 
+			// they came together in one expression.
+			int expression_size = 4;	
 
 			foreach(KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
 
 				if (lexeme.Value.Item2 == "HEY CHRISTMAS TREE") {
 					temp_str = lexeme.Value.Item2;
-					hey_christmas_tree.Add(temp_str);
+					assign_var.Add(temp_str);
 
 					if (lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") {
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
-						hey_christmas_tree.Add(temp_str);
+						assign_var.Add(temp_str);
+					} else {
+						Console.WriteLine("Error: missing variable.");
+						break;
 					}
 
 					if (lexeme_collection[lexeme.Key + 2].Item2 == "YOU SET US UP") {
 						// Console.WriteLine("correct syntax!");
-						you_set_us_up.Add(lexeme_collection[lexeme.Key + 2].Item2);
+						assign_var.Add(lexeme_collection[lexeme.Key + 2].Item2);
 
 						if (lexeme_collection[lexeme.Key + 3].Item1 == "Integer literal") {
 							temp_str = lexeme_collection[lexeme.Key + 3].Item2;
-							you_set_us_up.Add(temp_str);
+							assign_var.Add(temp_str);
+
+							int assign_var_size = assign_var.Count;
+			
+							if (assign_var_size == expression_size) {
+								/*
+									Because of copy issues, I had to make a copy of the listthen add the copy to the 
+									list of program expressions so as not to have problems.
+								*/
+								List<string> copy = new List<string>(assign_var);
+								temp.Add(copy);
+								assign_var.Clear();
+
+							}
+
 						}
 
 					} else {
@@ -83,31 +107,72 @@ namespace ArnoldCinterpreter {
 
 				} 
 
-				// Console.WriteLine(hey_christmas_tree.Count);
-				// Console.WriteLine(you_set_us_up.Count);
-
-				hey_christmas_tree.ForEach(str_val => Console.WriteLine(str_val));
-				you_set_us_up.ForEach(str_val => Console.WriteLine(str_val));
-
-				int h_expr_size = hey_christmas_tree.Count;
-				int y_expr_size = you_set_us_up.Count;
-
-				if ((h_expr_size == expression_size) && (y_expr_size == expression_size)) {
-					program_expressions.Add(hey_christmas_tree);
-					program_expressions.Add(you_set_us_up);
-					Console.WriteLine("Added to program expressions");
-					hey_christmas_tree.Clear();
-					you_set_us_up.Clear();
-					h_expr_size = 0;
-					y_expr_size = 0;
-				}
-
 			}
+
+			foreach (var list in temp) {
+                program_expressions.Add(list);
+            }
 			
 		}   
 
 		// prioritize this!
     	public void talk_to_the_hand(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+
+    		List<List<string>> temp = new List<List<string>>();
+    		List<string> print_value = new List<string>();
+
+    		string temp_str;
+    		int expression_size = 2;
+
+    		foreach(KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
+    			if (lexeme.Value.Item2 == "TALK TO THE HAND") {
+    				temp_str = lexeme.Value.Item2;
+    				print_value.Add(temp_str);
+
+    				if (lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") {
+    					Console.WriteLine("printing a var");
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						print_value.Add(temp_str);
+
+						if (print_value.Count == expression_size) {
+							List<string> copy = new List<string>(print_value);
+							temp.Add(copy);
+							print_value.Clear();
+						}
+
+					} else if (lexeme_collection[lexeme.Key + 1].Item1 == "String literal") {
+						Console.WriteLine("printing a string");
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						print_value.Add(temp_str);
+
+						if (print_value.Count == expression_size) {
+							List<string> copy = new List<string>(print_value);
+							temp.Add(copy);
+							print_value.Clear();
+						}
+
+					} else if (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") {
+						Console.WriteLine("printing an int");
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						print_value.Add(temp_str);
+
+
+						if (print_value.Count == expression_size) {
+							List<string> copy = new List<string>(print_value);
+							temp.Add(copy);
+							print_value.Clear();
+						}
+						
+					} else {
+						Console.WriteLine("Error: Invalid print combination.");
+					}
+
+    			}
+    		}
+
+    		foreach (var list in temp) {
+                program_expressions.Add(list);
+            }
 
     	}
 
