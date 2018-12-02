@@ -11,7 +11,7 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 		  2252H: add variable regex and changed variable names for readability. 
 
 11-15-18, 0229H: took the working parts for variable and function names from Waldo's code. Not a merge, more of an update.
-  approx. 0317H: added better matches for macros and and integers. Integers can now be read next to the keywords YOU SET US UP, GET UP, and GET DOWN.
+  approx. 0317H: added better matches for macros and and integers. Integers can now be read next to the keywords YOU SET US UP, GET UP,					   and GET DOWN.
   		  0748H: encountered exceptions at lines 43 and 72, not sure how to fix it so ask Ma'am. Short description below. 
   		  		 Line 43: System.ArgumentException has been thrown parsing the contents of line 41.
   		  		 Line 72: System.ArgumentNullException has been thrown, value cannot be null.
@@ -109,14 +109,20 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1341H: Found new error while fixing talk_to_the_hand(). Strings like "3" are being read as integer literals.
 
+		 1350H: Fixed the error. Work continues.
 
+		 1354H: Successfully added talk_to_the_hand() functionality. 
+
+		 1410H: Food break. Currently working on reassign_variable() functionality because it needs to be in order before the arithemtic_ops() 		  functionality can get anywhere.
+
+		 1531H: Finished reassign_variable() functionality! [deleted] baka keri nga
 
 
 ERROR LIST:
 
 	(1) In main_method(), in Parser.cs: Wrong item getting written to expression list. [Fixed as of 0857H, 12-2-18]
 	(2) Missing keys in dictionary due to deletion. [Fixed as pf 0857H, 12-2-18]
-	(3) Strings like "3" are being read as integer literals.
+	(3) Strings like "3" are being read as integer literals. [Fixed as of 1350H, 12-2-18]
 
 
 

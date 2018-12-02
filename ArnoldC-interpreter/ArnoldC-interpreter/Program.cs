@@ -24,6 +24,7 @@ namespace ArnoldCinterpreter {
             parser.main_method(lexeme_dictionary);
             parser.assign_variable(lexeme_dictionary);
             parser.talk_to_the_hand(lexeme_dictionary);
+            parser.reassign_variable(lexeme_dictionary);
             // parser.arithmetic_ops(lexeme_dictionary);
 
             List<List<string>> exprs = parser.get_program_expressions();

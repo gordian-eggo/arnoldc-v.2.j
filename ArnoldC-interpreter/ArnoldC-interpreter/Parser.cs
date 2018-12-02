@@ -12,13 +12,7 @@ namespace ArnoldCinterpreter {
 
     	Dictionary<int, Tuple<string, string>> symbol_table = new Dictionary<int, Tuple<string, string>>();
     	List<List<string>> program_expressions = new List<List<string>>();
-    	
-    	/*
-			solid_index is for the main thing being parsed, flexi_index is for adjusting the symbol table.
-    	*/
-
-    	// int solid_index = 1;		
-    	// int flexi_index = 1;
+    
 		bool valid_main_method;
 
 		public List<List<string>> get_program_expressions() {
@@ -115,7 +109,7 @@ namespace ArnoldCinterpreter {
 			
 		}   
 
-		// prioritize this!
+		// finished!
     	public void talk_to_the_hand(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 
     		List<List<string>> temp = new List<List<string>>();
@@ -130,7 +124,7 @@ namespace ArnoldCinterpreter {
     				print_value.Add(temp_str);
 
     				if (lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") {
-    					Console.WriteLine("printing a var");
+    
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
 						print_value.Add(temp_str);
 
@@ -141,7 +135,7 @@ namespace ArnoldCinterpreter {
 						}
 
 					} else if (lexeme_collection[lexeme.Key + 1].Item1 == "String literal") {
-						Console.WriteLine("printing a string");
+						
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
 						print_value.Add(temp_str);
 
@@ -152,7 +146,7 @@ namespace ArnoldCinterpreter {
 						}
 
 					} else if (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") {
-						Console.WriteLine("printing an int");
+						
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
 						print_value.Add(temp_str);
 
@@ -162,7 +156,7 @@ namespace ArnoldCinterpreter {
 							temp.Add(copy);
 							print_value.Clear();
 						}
-						
+
 					} else {
 						Console.WriteLine("Error: Invalid print combination.");
 					}
@@ -176,10 +170,77 @@ namespace ArnoldCinterpreter {
 
     	}
 
+    	// finsihed!
+    	public void reassign_variable(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+			List<List<string>> temp = new List<List<string>>();
+    		List<string> reassign_var = new List<string>();
+
+    		string temp_str;
+    		int expression_size = 5;		// GET TO THE CHOPPER + var/int + HERE IS MY INVITATION + var/int + ENOUGH TALK = 5 pieces
+    		int total_piece_count = 0;	
+    		int group_count = 0;
+
+    		foreach(KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
+    			if (lexeme.Value.Item2 == "GET TO THE CHOPPER") {
+    				temp_str = lexeme.Value.Item2;
+    				reassign_var.Add(temp_str);
+    				total_piece_count = total_piece_count + 1;
+
+    				if ((lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") 			// pwede pala yung ganitong syntax wow
+    					|| (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal")) {
+    
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						reassign_var.Add(temp_str);
+						total_piece_count = total_piece_count + 1;
+
+						if (lexeme_collection[lexeme.Key + 2].Item2 == "HERE IS MY INVITATION") {
+    
+							temp_str = lexeme_collection[lexeme.Key + 2].Item2;
+							reassign_var.Add(temp_str);
+							total_piece_count = total_piece_count + 1;
+
+							if ((lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") 
+								|| (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal")) {
+    
+								temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+								reassign_var.Add(temp_str);
+								total_piece_count = total_piece_count + 1;
+	
+							}
+
+						}
+
+					}
+
+    			} else if (lexeme.Value.Item2 == "ENOUGH TALK") {
+    				temp_str = lexeme.Value.Item2;
+    				reassign_var.Add(temp_str);
+    				total_piece_count = total_piece_count + 1;
+    				group_count = group_count + 1;
+
+    				if (reassign_var.Count == expression_size) {
+						List<string> copy = new List<string>(reassign_var);
+						temp.Add(copy);
+						reassign_var.Clear();
+					}
+    			}
+    		}
+
+    		if ((total_piece_count / group_count) == expression_size) {
+    			foreach (var list in temp) {
+                	program_expressions.Add(list);
+            	}
+    		}
+
+		}
+
     	// prioritize this!
     	public void arithmetic_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
+			List<List<string>> temp = new List<List<string>>();
 			List<string> arithmetic_expr = new List<string>();
+
+			string temp_str;
 			int math_expr_size = 2;				// Count() is a LINQ extension method, usage explained in readme.txt
 
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
@@ -225,11 +286,7 @@ namespace ArnoldCinterpreter {
 
 		public void logical_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
-		}   	  	
-
-		public void reassign_variable(Dictionary<int, Tuple<string, string>> lexeme_collection) {
-			
-		}    	
+		}   	  	    	
 
 		public void if_else(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
