@@ -285,7 +285,7 @@ namespace ArnoldCinterpreter {
             Dictionary<int, Tuple<string, string>> final_lexeme_dict = new Dictionary<int, Tuple<string, string>>();
 
             // use this for loop to put the edited values in the final lexeme dictionary
-            for (int j = 1; j < numbering_fix_copy.Count; j++) {
+            for (int j = 0; j < numbering_fix_copy.Count; j++) {
                 string lexeme = numbering_fix_copy[numbering_fix_copy.Keys.ElementAt(j)].Item1;
                 string lexeme_value = numbering_fix_copy[numbering_fix_copy.Keys.ElementAt(j)].Item2;
                 var token = Tuple.Create(lexeme, lexeme_value);

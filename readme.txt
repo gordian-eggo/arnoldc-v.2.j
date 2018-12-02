@@ -103,6 +103,8 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 	
 		 0856H: FIXED THE LEXICAL ANALYZER ERROR WOOO GO UP MBT KUNG NAIRAOS NIYO KAYA KO RIN WOOO okay back to work.
 
+		 1205H: Reset program version but forgot to copy of readme.txt hays. Having trouble accessing lists in lists.
+
 
 
 
