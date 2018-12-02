@@ -27,16 +27,22 @@ namespace ArnoldCinterpreter {
 			List<string> main_method_expr = new List<string>();
 			int lexeme_count = lexeme_collection.Count();
 
+			Console.WriteLine(lexeme_count);
+
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
 
+				Console.WriteLine(lexeme.Value.Item2);
+
 				if (lexeme.Key == 1) {
-					// Console.WriteLine("got IT'S SHOWTIME");
+					Console.WriteLine("got IT'S SHOWTIME");
 					main_method_expr.Add(lexeme.Value.Item2);
 				} else if (lexeme.Key == lexeme_count) {
-					// Console.WriteLine("got YOU HAVE BEEN TERMINATED");
+					Console.WriteLine("am getting the wrong thing here");
 					main_method_expr.Add(lexeme.Value.Item2);
 				}
 			}
+
+			Console.WriteLine(main_method_expr[0] + " " + main_method_expr[1]);
 
 			if (main_method_expr.Contains("IT'S SHOWTIME") && main_method_expr.Contains("YOU HAVE BEEN TERMINATED")) {
 				valid_main_method = true;

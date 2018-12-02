@@ -93,6 +93,24 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1110H: Successfully removed the offending line, ready to test with parser.
 
+		 1121H: Fix works well enough so far, but will have to adjust and debug parser methods. Won't check "debug lexical analyzer error" off the to-do list just yet, though. I suspect there's a catch.
+
+		 1217H: Came back from food break to an error in main_method(). Wrong item gets written to the expression list. Must be remedied.
+
+		 1232H: I found the catch I was talking about earlier. I'll have to update the original copy of the lexeme dictionary to handle the methods in the parser.
+
+12-2-18, 0826H: Can't change the value of a key in a dictionary, so will have to edit the entire thing before putting it in the dictionary. 				[deleted] this pero [deleted] Ateneo more huhu ba't sila ganyan.
+	
+		 0856H: FIXED THE LEXICAL ANALYZER ERROR WOOO GO UP MBT KUNG NAIRAOS NIYO KAYA KO RIN WOOO okay back to work.
+
+
+
+
+ERROR LIST:
+
+	(1) In main_method(), in Parser.cs: Wrong item getting written to expression list. [Fixed as of 0857H, 12-2-18]
+	(2) Missing keys in dictionary due to deletion. [Fixed as pf 0857H, 12-2-18]
+
 
 
 COMMENTS ON SYNTAX:
@@ -119,3 +137,5 @@ COMMENTS ON SYNTAX:
 References:
 
 	https://stackoverflow.com/questions/15057712/why-am-i-getting-an-exception-invalidoperationexception
+	https://www.dotnetperls.com/copy-dictionary (for individual questions regarding C# methods and syntax)
+	https://stackoverflow.com/questions/1937847/how-to-modify-key-in-a-dictionary-in-c-sharp
