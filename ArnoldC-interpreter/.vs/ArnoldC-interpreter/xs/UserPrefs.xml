@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{77675913-E32F-4642-B420-9C558642C79C}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ArnoldC-interpreter/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ArnoldC-interpreter/Lexer.cs">
     <Files>
-      <File FileName="ArnoldC-interpreter/MainWindow.cs" Line="1" Column="1" />
+      <File FileName="ArnoldC-interpreter/Parser.cs" Line="1" Column="1" />
+      <File FileName="ArnoldC-interpreter/Lexer.cs" Line="289" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
