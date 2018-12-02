@@ -21,20 +21,23 @@ namespace ArnoldCinterpreter {
             Lexer lexer = new Lexer();
             Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer();
             Parser parser = new Parser();
-            parser.main_method(lexeme_dictionary);
-            parser.assign_variable(lexeme_dictionary);
-            parser.talk_to_the_hand(lexeme_dictionary);
-            parser.reassign_variable(lexeme_dictionary);
-            // parser.arithmetic_ops(lexeme_dictionary);
+            parser.parse_file(lexeme_dictionary);
+        
+            // List<List<string>> exprs = parser.get_program_expressions();
 
-            List<List<string>> exprs = parser.get_program_expressions();
+            // Console.WriteLine("\n");
+            // foreach (var list in exprs) {
 
-            foreach (var list in exprs) {
+            //     foreach (var item in list) {
+            //         Console.WriteLine(item);
+            //     }
 
-                foreach (var item in list) {
-                    Console.WriteLine(item);
-                }
+            // }
 
+            Dictionary<int, Tuple<string, string>> symbol_table = parser.get_symbol_table();
+
+            foreach (var token in symbol_table) {
+                Console.WriteLine(token);
             }
 
         }

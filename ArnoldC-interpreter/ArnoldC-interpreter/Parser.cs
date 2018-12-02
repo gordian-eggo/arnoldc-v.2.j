@@ -12,11 +12,15 @@ namespace ArnoldCinterpreter {
 
     	Dictionary<int, Tuple<string, string>> symbol_table = new Dictionary<int, Tuple<string, string>>();
     	List<List<string>> program_expressions = new List<List<string>>();
-    
 		bool valid_main_method;
+		int i = 1;
 
 		public List<List<string>> get_program_expressions() {
 			return program_expressions;
+		}
+
+		public Dictionary<int, Tuple<string, string>> get_symbol_table() {
+			return symbol_table;
 		}
 
 		// finished!
@@ -226,64 +230,170 @@ namespace ArnoldCinterpreter {
     			}
     		}
 
-    		if ((total_piece_count / group_count) == expression_size) {
-    			foreach (var list in temp) {
-                	program_expressions.Add(list);
-            	}
+    		if (group_count != 0) {
+    			if ((total_piece_count / group_count) == expression_size) {
+	    			foreach (var list in temp) {
+	                	program_expressions.Add(list);
+	            	}
+	    		}
     		}
 
 		}
 
-    	// prioritize this!
+    	// finished!
     	public void arithmetic_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
 			List<List<string>> temp = new List<List<string>>();
 			List<string> arithmetic_expr = new List<string>();
 
 			string temp_str;
-			int math_expr_size = 2;				// Count() is a LINQ extension method, usage explained in readme.txt
+			int math_expr_size = 2;				// Count() is a LINQ extension method that does something I'm not entirely sure of
+												// so used .Count instead
+			int total_piece_count = 0;
+			int group_count = 0;
 
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
 				if (lexeme.Value.Item2 == "GET UP") {
-					Console.WriteLine("am here!!");
-					arithmetic_expr.Add(lexeme.Value.Item2);
+
+					temp_str = lexeme.Value.Item2;
+					arithmetic_expr.Add(temp_str);
+					total_piece_count = total_piece_count + 1;
+
+					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
+						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
+
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						arithmetic_expr.Add(temp_str);
+						total_piece_count = total_piece_count + 1;						
+						group_count = group_count + 1;
+
+						if (arithmetic_expr.Count == math_expr_size) {
+							List<string> copy = new List<string>(arithmetic_expr);
+							temp.Add(copy);
+							arithmetic_expr.Clear();
+						}
+
+					} else {
+						Console.WriteLine("Error: missing variable or integer value.");
+						break;
+					}
+
 				} else if (lexeme.Value.Item2 == "GET DOWN") {
-					arithmetic_expr.Add(lexeme.Value.Item2);
+
+					temp_str = lexeme.Value.Item2;
+					arithmetic_expr.Add(temp_str);
+					total_piece_count = total_piece_count + 1;
+
+					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
+						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
+
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						arithmetic_expr.Add(temp_str);
+						total_piece_count = total_piece_count + 1;						
+						group_count = group_count + 1;
+
+						if (arithmetic_expr.Count == math_expr_size) {
+							List<string> copy = new List<string>(arithmetic_expr);
+							temp.Add(copy);
+							arithmetic_expr.Clear();
+						}
+
+					} else {
+						Console.WriteLine("Error: missing variable or integer value.");
+						break;
+					}
+
 				} else if (lexeme.Value.Item2 == "YOU'RE FIRED") { 
-					arithmetic_expr.Add(lexeme.Value.Item2);
+
+					temp_str = lexeme.Value.Item2;
+					arithmetic_expr.Add(temp_str);
+					total_piece_count = total_piece_count + 1;
+
+					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
+						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
+
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						arithmetic_expr.Add(temp_str);
+						total_piece_count = total_piece_count + 1;						
+						group_count = group_count + 1;
+
+						if (arithmetic_expr.Count == math_expr_size) {
+							List<string> copy = new List<string>(arithmetic_expr);
+							temp.Add(copy);
+							arithmetic_expr.Clear();
+						}
+
+					} else {
+						Console.WriteLine("Error: missing variable or integer value.");
+						break;
+					}
+
 				} else if (lexeme.Value.Item2 == "HE HAD TO SPLIT") {
-					arithmetic_expr.Add(lexeme.Value.Item2);
-				} else if (lexeme.Value.Item2 == "Integer literal") {
-					Console.WriteLine("now am here!!");
-					arithmetic_expr.Add(lexeme.Value.Item2);
-				}
 
-				Console.WriteLine(math_expr_size);
-				Console.WriteLine(arithmetic_expr.Count);
+					temp_str = lexeme.Value.Item2;
+					arithmetic_expr.Add(temp_str);
+					total_piece_count = total_piece_count + 1;
 
-				if (arithmetic_expr.Count == math_expr_size) {
-					string math_expr = string.Join(" ", arithmetic_expr.ToArray());
-					Console.WriteLine(math_expr);
-					break;
+					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
+						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
+
+						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+						arithmetic_expr.Add(temp_str);
+						total_piece_count = total_piece_count + 1;						
+						group_count = group_count + 1;
+
+						if (arithmetic_expr.Count == math_expr_size) {
+							List<string> copy = new List<string>(arithmetic_expr);
+							temp.Add(copy);
+							arithmetic_expr.Clear();
+						}
+
+					} else {
+						Console.WriteLine("Error: missing variable or integer value.");
+						break;
+					}
+
 				}
 
 			}
 
-
-			if (arithmetic_expr.Contains("GET UP") && arithmetic_expr.Contains("Integer literal")) {
-				Console.WriteLine("Add method valid.");
-			} else if (arithmetic_expr.Contains("GET DOWN") && arithmetic_expr.Contains("Integer literal")) {
-				Console.WriteLine("Subtract method valid.");
-			} else if (arithmetic_expr.Contains("YOU'RE FIRED") && arithmetic_expr.Contains("Integer literal")) {
-				Console.WriteLine("Multiply method valid.");
-			} else if (arithmetic_expr.Contains("HE HAD TO SPLIT") && arithmetic_expr.Contains("Integer literal")) {
-				Console.WriteLine("Divide method valid.");
+			if (group_count != 0) {
+				if ((total_piece_count / group_count) == math_expr_size) {
+		    		foreach (var list in temp) {
+		               	program_expressions.Add(list);
+		           	}
+		    	}
 			}
 
 			// I'm supposed to add this knowledge to the symbol table but I'm not entirely sure what I'm supposed to put there.
 
 		}    	
 
+		public void update_symbol_table(List<List<string>> exprs, Dictionary<int, Tuple<string, string>> table) {
+
+			if (valid_main_method == true) {
+
+				foreach (var expr in exprs) {
+					Console.WriteLine(this.i);
+					Console.WriteLine("expr.Count = " + expr.Count);
+					if (expr.Contains("HEY CHRISTMAS TREE")){
+						var new_variable = expr[1];
+						var new_value = expr[3];
+						var token = Tuple.Create(new_variable, new_value);
+
+						this.symbol_table.Add(this.i, token);
+						this.i = this.i + 1;	
+					}
+					
+				}
+
+			}
+
+			this.i = 1;
+			
+		} 
+
+		// might not do these due to time constraints
 		public void logical_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
 		}   	  	    	
@@ -298,9 +408,14 @@ namespace ArnoldCinterpreter {
 
 		// try to implement a function that will automatically do all of the above. 
 
-		// public void parse_file(Dictionary<int, Tuple<string, string>> lexeme_collection) {
-		// 	this.main_method(lexeme_collection);
-		// }    	
+		public void parse_file(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+			this.main_method(lexeme_collection);
+			this.assign_variable(lexeme_collection);
+			this.talk_to_the_hand(lexeme_collection);
+			this.reassign_variable(lexeme_collection);
+			this.arithmetic_ops(lexeme_collection);
+			this.update_symbol_table(program_expressions, lexeme_collection);
+		}    	
 
     }
 }

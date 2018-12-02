@@ -117,6 +117,14 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1531H: Finished reassign_variable() functionality! [deleted] baka keri nga
 
+		 1604H: Finished arithmetic_ops() functionality! [deleted] iiyak na talaga ako baka keri nga. 
+		 1605H: Notes for what I have left to finish (because I might forget by the time I come back):
+		 			> function in Parser.cs to update the symbol table
+		 			> start semantic analyzer yay!!
+		 			> more work on UI
+
+12-3-18, 0718H: Slept too long. Implemented the update_symbol_table() function in Parser.cs. Currently it reads assigned variables.
+
 
 ERROR LIST:
 
