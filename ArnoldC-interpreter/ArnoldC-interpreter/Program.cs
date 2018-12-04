@@ -20,6 +20,8 @@ namespace ArnoldCinterpreter {
 
             Lexer lexer = new Lexer(); 
             Parser parser = new Parser();
+            Semantic semantic_analyzer = new Semantic();
+
             Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer(); 
             List<List<string>> program_expressions = parser.get_program_expressions();
             List<List<string>> print_statements = parser.get_print_expressions(); 
@@ -27,25 +29,26 @@ namespace ArnoldCinterpreter {
             List<List<string>> reassign_statements = parser.get_reassign_expressions(); 
             List<List<string>> arithmetic_equations = parser.get_math_expressions(); 
             Dictionary<int, Tuple<string,string>> symbol_table = parser.get_symbol_table();
+
+            bool check_comments = true;
             
             parser.parse_file(lexeme_dictionary);
 
             // uncomment to check contents of statement lists
-            if (parser.valid_main_method == true) {
-                // Console.WriteLine("symbol table data");
-                // foreach (var token in symbol_table) {
-                //     Console.WriteLine(token);
-                // }
-
-                Console.WriteLine("program expressions\n");
-                foreach (var expr in program_expressions) {
-                    foreach (var content in expr) {
-                        Console.WriteLine(content);
-                    }    
-                    Console.WriteLine();
+            if (check_comments == true) {
+                Console.WriteLine("symbol table data");
+                foreach (var token in symbol_table) {
+                    Console.WriteLine(token);
                 }
-                
 
+                // Console.WriteLine("program expressions\n");
+                // foreach (var expr in program_expressions) {
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                //     Console.WriteLine();
+                // }
+                
                 // Console.WriteLine("\n");
                 // Console.WriteLine("print statements");
                 // foreach (var expr in print_statements) {
@@ -62,23 +65,28 @@ namespace ArnoldCinterpreter {
                 //     }    
                 // }
 
-                // Console.WriteLine("\nreassign statements");
-                // foreach (var expr in reassign_statements) {
-                //     Console.WriteLine("Statement: ");
-                //     foreach (var content in expr) {
-                //         Console.WriteLine(content);
-                //     }    
-                // }
+                Console.WriteLine("\nreassign statements");
+                foreach (var expr in reassign_statements) {
+                    Console.WriteLine("Statement: ");
+                    foreach (var content in expr) {
+                        Console.WriteLine(content);
+                    }    
+                }
 
-                // Console.WriteLine("\nequations");
-                // Console.WriteLine("# of equations: " + arithmetic_equations.Count);
-                // foreach (var expr in arithmetic_equations) {
-                //     Console.WriteLine("Equation: ");
-                //     foreach (var content in expr) {
-                //         Console.WriteLine(content);
-                //     }    
-                // }
+                Console.WriteLine("\nequations");
+                Console.WriteLine("# of equations: " + arithmetic_equations.Count);
+                foreach (var expr in arithmetic_equations) {
+                    Console.WriteLine("Equation: ");
+                    foreach (var content in expr) {
+                        Console.WriteLine(content);
+                    }    
+                }
+
             }
+
+
+            semantic_analyzer.run_program(print_statements, assignment_expressions, reassign_statements, arithmetic_equations);
+
 
         }
     }
