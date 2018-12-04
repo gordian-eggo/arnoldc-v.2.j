@@ -175,7 +175,7 @@ COMMENTS ON SYNTAX:
 	> you can't put a print statement between HEY CHRISTMAS TREE and YOU SET US UP
 	> you can't put if statements/if-else statements inside a GET TO THE CHOPPER loop
 
-Github repo link: 
+Github repo link: https://github.com/gordian-eggo/arnoldc-v.2.j
 
 References:
 
