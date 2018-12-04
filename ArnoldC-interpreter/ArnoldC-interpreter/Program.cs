@@ -18,26 +18,51 @@ namespace ArnoldCinterpreter {
             // win.Show();
             // Application.Run();
 
-            Lexer lexer = new Lexer();
-            Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer();
-            Parser parser = new Parser();
+            Lexer lexer = new Lexer(); Parser parser = new Parser();
+            Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer(); 
+            List<List<string>> print_statements = parser.get_print_expressions(); 
+            List<List<string>> assignment_expressions = parser.get_assignment_expressions(); 
+            List<List<string>> reassign_statements = parser.get_reassign_expressions(); 
+            List<List<string>> arithmetic_equations = parser.get_math_expressions(); 
+            Dictionary<int, Tuple<string,string>> symbol_table = parser.get_symbol_table();
+            
             parser.parse_file(lexeme_dictionary);
-        
-            // List<List<string>> exprs = parser.get_program_expressions();
 
-            // Console.WriteLine("\n");
-            // foreach (var list in exprs) {
-
-            //     foreach (var item in list) {
-            //         Console.WriteLine(item);
-            //     }
-
-            // }
-
-            Dictionary<int, Tuple<string, string>> symbol_table = parser.get_symbol_table();
-
+            Console.WriteLine("symbol table data");
             foreach (var token in symbol_table) {
                 Console.WriteLine(token);
+            }
+
+            Console.WriteLine("\n");
+            Console.WriteLine("print statements");
+            foreach (var expr in print_statements) {
+                foreach (var content in expr) {
+                    Console.WriteLine(content);
+                }    
+            }
+
+            Console.WriteLine("\n");
+            Console.WriteLine("assignment expressions");
+            foreach (var expr in assignment_expressions) {
+                foreach (var content in expr) {
+                    Console.WriteLine(content);
+                }    
+            }
+
+            Console.WriteLine("\nreassign statements");
+            foreach (var expr in reassign_statements) {
+                Console.WriteLine("Statement: ");
+                foreach (var content in expr) {
+                    Console.WriteLine(content);
+                }    
+            }
+
+            Console.WriteLine("\nequations");
+            foreach (var expr in arithmetic_equations) {
+                foreach (var content in expr) {
+                    Console.WriteLine(content);
+                }    
+                Console.WriteLine("next equation");
             }
 
         }

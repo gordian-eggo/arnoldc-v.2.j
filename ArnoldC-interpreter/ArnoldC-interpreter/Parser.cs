@@ -11,12 +11,28 @@ namespace ArnoldCinterpreter {
     public class Parser {
 
     	Dictionary<int, Tuple<string, string>> symbol_table = new Dictionary<int, Tuple<string, string>>();
-    	List<List<string>> program_expressions = new List<List<string>>();
+    	// lists for making the semantic analyzer's life easier
+    	List<List<string>> assignment_expressions = new List<List<string>>();
+    	List<List<string>> reassign_expressions = new List<List<string>>();	
+    	List<List<string>> print_expressions = new List<List<string>>();		
+    	List<List<string>> math_expressions = new List<List<string>>();
 		bool valid_main_method;
 		int i = 1;
 
-		public List<List<string>> get_program_expressions() {
-			return program_expressions;
+		public List<List<string>> get_assignment_expressions() {
+			return assignment_expressions;
+		}
+
+		public List<List<string>> get_reassign_expressions() {
+			return reassign_expressions;
+		}
+
+		public List<List<string>> get_print_expressions() {
+			return print_expressions;
+		}
+
+		public List<List<string>> get_math_expressions() {
+			return math_expressions;
 		}
 
 		public Dictionary<int, Tuple<string, string>> get_symbol_table() {
@@ -27,7 +43,7 @@ namespace ArnoldCinterpreter {
 		public void main_method(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 
 			List<string> main_method_expr = new List<string>();
-			int lexeme_count = lexeme_collection.Count();
+			int lexeme_count = lexeme_collection.Count;
 
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
 
@@ -40,11 +56,13 @@ namespace ArnoldCinterpreter {
 
 			if (main_method_expr.Contains("IT'S SHOWTIME") && main_method_expr.Contains("YOU HAVE BEEN TERMINATED")) {
 				valid_main_method = true;
-				program_expressions.Add(main_method_expr);
+				// program_expressions.Add(main_method_expr);
 			} else if (!main_method_expr.Contains("IT'S SHOWTIME")) {
 				Console.WriteLine("Error: Invalid main method. Missing keyword IT'S SHOWTIME.");
+				valid_main_method = false;
 			} else if (!main_method_expr.Contains("YOU HAVE BEEN TERMINATED")) {
 				Console.WriteLine("Error: Invalid main method. Missing keyword YOU HAVE BEEN TERMINATED.");
+				valid_main_method = false;
 			}
 
 		}    	
@@ -108,7 +126,7 @@ namespace ArnoldCinterpreter {
 			}
 
 			foreach (var list in temp) {
-                program_expressions.Add(list);
+                assignment_expressions.Add(list);
             }
 			
 		}   
@@ -169,7 +187,7 @@ namespace ArnoldCinterpreter {
     		}
 
     		foreach (var list in temp) {
-                program_expressions.Add(list);
+                print_expressions.Add(list);
             }
 
     	}
@@ -203,12 +221,14 @@ namespace ArnoldCinterpreter {
 							reassign_var.Add(temp_str);
 							total_piece_count = total_piece_count + 1;
 
-							if ((lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") 
-								|| (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal")) {
+							if ((lexeme_collection[lexeme.Key + 3].Item1 == "Variable identifier") 
+								|| (lexeme_collection[lexeme.Key + 3].Item1 == "Integer literal")) {
     
-								temp_str = lexeme_collection[lexeme.Key + 1].Item2;
+    							// Console.WriteLine(lexeme_collection[lexeme.Key + 3].Item1 + " " + lexeme_collection[lexeme.Key + 3].Item2);
+    							// Console.WriteLine("MUMSH DAFUQ NAGPALIT LANG AKO NG INDEX");
+								temp_str = lexeme_collection[lexeme.Key + 3].Item2;
 								reassign_var.Add(temp_str);
-								total_piece_count = total_piece_count + 1;
+								total_piece_count = total_piece_count + 3;
 	
 							}
 
@@ -221,21 +241,20 @@ namespace ArnoldCinterpreter {
     				reassign_var.Add(temp_str);
     				total_piece_count = total_piece_count + 1;
     				group_count = group_count + 1;
-
-    				if (reassign_var.Count == expression_size) {
-						List<string> copy = new List<string>(reassign_var);
-						temp.Add(copy);
-						reassign_var.Clear();
-					}
     			}
+
+    			if (reassign_var.Count == expression_size) {
+					List<string> copy = new List<string>(reassign_var);
+					temp.Add(copy);
+					reassign_var.Clear();
+				}
+
     		}
 
-    		if (group_count != 0) {
-    			if ((total_piece_count / group_count) == expression_size) {
-	    			foreach (var list in temp) {
-	                	program_expressions.Add(list);
-	            	}
-	    		}
+    		if (group_count != 0) {					// if there's nothing in the group then nothing gets written to reassign_expressions
+	    		foreach (var list in temp) {
+	                reassign_expressions.Add(list);
+	            }
     		}
 
 		}
@@ -360,22 +379,19 @@ namespace ArnoldCinterpreter {
 			if (group_count != 0) {
 				if ((total_piece_count / group_count) == math_expr_size) {
 		    		foreach (var list in temp) {
-		               	program_expressions.Add(list);
+		               	math_expressions.Add(list);
 		           	}
 		    	}
 			}
-
-			// I'm supposed to add this knowledge to the symbol table but I'm not entirely sure what I'm supposed to put there.
 
 		}    	
 
 		public void update_symbol_table(List<List<string>> exprs, Dictionary<int, Tuple<string, string>> table) {
 
-			if (valid_main_method == true) {
+			if (valid_main_method == true) {		// only puts in the initial values of the variables
 
 				foreach (var expr in exprs) {
-					Console.WriteLine(this.i);
-					Console.WriteLine("expr.Count = " + expr.Count);
+	
 					if (expr.Contains("HEY CHRISTMAS TREE")){
 						var new_variable = expr[1];
 						var new_value = expr[3];
@@ -393,28 +409,30 @@ namespace ArnoldCinterpreter {
 			
 		} 
 
-		// might not do these due to time constraints
-		public void logical_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+		// did not do these due to time constraints
+		// public void logical_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
-		}   	  	    	
+		// }   	  	    	
 
-		public void if_else(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+		// public void if_else(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
-		}    	
+		// }    	
 
-		public void while_loop(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+		// public void while_loop(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
-		} 
+		// } 
 
-		// try to implement a function that will automatically do all of the above. 
 
+		// does all of the above 
 		public void parse_file(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			this.main_method(lexeme_collection);
-			this.assign_variable(lexeme_collection);
-			this.talk_to_the_hand(lexeme_collection);
-			this.reassign_variable(lexeme_collection);
-			this.arithmetic_ops(lexeme_collection);
-			this.update_symbol_table(program_expressions, lexeme_collection);
+			if (valid_main_method == true) {
+				this.assign_variable(lexeme_collection);
+				this.talk_to_the_hand(lexeme_collection);
+				this.reassign_variable(lexeme_collection);
+				this.arithmetic_ops(lexeme_collection);
+				this.update_symbol_table(assignment_expressions, lexeme_collection);
+			}
 		}    	
 
     }
