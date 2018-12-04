@@ -135,6 +135,8 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1325H: Syntax analyzer can now detect equations. 
 
+		 1552H: Semantic analyzer should more or less know which statements to execute in what order. Very very basic.
+
 
 
 ERROR LIST:
@@ -171,3 +173,14 @@ References:
 	https://stackoverflow.com/questions/15057712/why-am-i-getting-an-exception-invalidoperationexception
 	https://www.dotnetperls.com/copy-dictionary (for individual questions regarding C# methods and syntax)
 	https://stackoverflow.com/questions/1937847/how-to-modify-key-in-a-dictionary-in-c-sharp
+	https://www.monodevelop.com/documentation/stetic-gui-designer/
+	https://www.monodevelop.com/documentation/building-a-simple-application-using-the-stetic-gui-designer/
+	https://www.youtube.com/watch?v=0P82vSqvt9k (VB and CSharp Create simple console and GTK apps in Monodevelop)
+
+Unused References (delete thiese later):
+
+	https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/index?fbclid=IwAR3ZT_6JvGzoysRxgStT92l6Iww-Q6O7CiUf33A0XSjxhPX4xRl4LiPBMNY
+	https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/index?fbclid=IwAR11ExU9QK7-5v7AM49ig9ipVIjhsKj-7IWF-vaLzX8zKvR8XAMAsFpEq8c
+	https://docs.microsoft.com/en-us/dotnet/csharp/index?fbclid=IwAR088o7-rvCGgZUX6sHedW-x8cISJ1M25w2kjCvbFFpdN_UxPaIBm6dMeLU
+	https://gist.github.com/sanmadjack/be06c8cf8a6de1632ee3?fbclid=IwAR187hT7XNuBkDkuv3aKN8H9_1GZy4dKcfAmp33PY5ZqIX46ZSJa6ifUo6A
+	https://stackoverflow.com/questions/20612468/making-gtk-file-chooser-to-select-file-only?fbclid=IwAR2eFM3O2r_mtZEVK-Qj9FTft37aXjd9-fiLUM271r6UYfkxQw-qpSETrQw

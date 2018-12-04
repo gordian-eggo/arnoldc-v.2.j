@@ -12,6 +12,7 @@ namespace ArnoldCinterpreter {
 
     	Dictionary<int, Tuple<string, string>> symbol_table = new Dictionary<int, Tuple<string, string>>();
     	// lists for making the semantic analyzer's life easier
+    	List<List<string>> program_expressions = new List<List<string>>();
     	List<List<string>> assignment_expressions = new List<List<string>>();
     	List<List<string>> reassign_expressions = new List<List<string>>();	
     	List<List<string>> print_expressions = new List<List<string>>();		
@@ -37,6 +38,80 @@ namespace ArnoldCinterpreter {
 
 		public Dictionary<int, Tuple<string, string>> get_symbol_table() {
 			return symbol_table;
+		}
+
+		public List<List<string>> get_program_expressions() {
+			return program_expressions;
+		}
+
+		public void fill_program_expressions(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+			
+			// this is everything you have to do in something resembling order
+
+			List<string> expr = new List<string>();
+
+			for (int i = 0; i < lexeme_collection.Count; i++) {
+
+				if (lexeme_collection[i].Item2 == "HEY CHRISTMAS TREE")	{
+					
+					string hey_christmas_tree = lexeme_collection[i].Item2;
+					string hct_partner = lexeme_collection[i + 1].Item2;
+					string you_set_us_up = lexeme_collection[i + 2].Item2;
+					string ysuu_partner = lexeme_collection[i + 3].Item2;
+
+					expr.Add(hey_christmas_tree);
+					expr.Add(hct_partner);
+					expr.Add(you_set_us_up);
+					expr.Add(ysuu_partner);
+
+					List<string> copy = new List<string>(expr);
+
+					program_expressions.Add(copy);
+
+					expr.Clear();
+					
+				} else if (lexeme_collection[i].Item2 == "TALK TO THE HAND") {
+
+					string talk_to_the_hand = lexeme_collection[i].Item2;
+					string the_thing_to_print = lexeme_collection[i + 1].Item2;
+
+					expr.Add(talk_to_the_hand);
+					expr.Add(the_thing_to_print);
+
+					List<string> copy = new List<string>(expr);
+
+					program_expressions.Add(copy);
+
+					expr.Clear();
+
+				} else if (lexeme_collection[i].Item2 == "GET TO THE CHOPPER") {
+
+					int j = i;
+
+					string get_to_the_chopper = lexeme_collection[i].Item2;
+
+					expr.Add(get_to_the_chopper);
+
+					do {
+
+						j = j + 1;
+						// Console.WriteLine(lexeme_collection[j].Item2);
+
+						string temp = lexeme_collection[j].Item2;
+
+						expr.Add(temp);
+
+					}while (lexeme_collection[j].Item2 != "ENOUGH TALK");					
+
+					List<string> copy = new List<string>(expr);
+
+					program_expressions.Add(copy);
+
+					expr.Clear();
+
+				}
+			}
+
 		}
 
 		// finished!
@@ -429,6 +504,7 @@ namespace ArnoldCinterpreter {
 
 		// does all of the above 
 		public void parse_file(Dictionary<int, Tuple<string, string>> lexeme_collection) {
+			this.fill_program_expressions(lexeme_collection);
 			this.main_method(lexeme_collection);
 			if (valid_main_method == true) {
 				this.assign_variable(lexeme_collection);

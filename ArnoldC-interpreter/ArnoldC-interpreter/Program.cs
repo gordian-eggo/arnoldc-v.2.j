@@ -18,8 +18,10 @@ namespace ArnoldCinterpreter {
             // win.Show();
             // Application.Run();
 
-            Lexer lexer = new Lexer(); Parser parser = new Parser();
+            Lexer lexer = new Lexer(); 
+            Parser parser = new Parser();
             Dictionary<int, Tuple<string, string>> lexeme_dictionary = lexer.Lexical_analyzer(); 
+            List<List<string>> program_expressions = parser.get_program_expressions();
             List<List<string>> print_statements = parser.get_print_expressions(); 
             List<List<string>> assignment_expressions = parser.get_assignment_expressions(); 
             List<List<string>> reassign_statements = parser.get_reassign_expressions(); 
@@ -34,6 +36,15 @@ namespace ArnoldCinterpreter {
                 // foreach (var token in symbol_table) {
                 //     Console.WriteLine(token);
                 // }
+
+                Console.WriteLine("program expressions\n");
+                foreach (var expr in program_expressions) {
+                    foreach (var content in expr) {
+                        Console.WriteLine(content);
+                    }    
+                    Console.WriteLine();
+                }
+                
 
                 // Console.WriteLine("\n");
                 // Console.WriteLine("print statements");
@@ -59,14 +70,14 @@ namespace ArnoldCinterpreter {
                 //     }    
                 // }
 
-                Console.WriteLine("\nequations");
-                Console.WriteLine("# of equations: " + arithmetic_equations.Count);
-                foreach (var expr in arithmetic_equations) {
-                    Console.WriteLine("Equation: ");
-                    foreach (var content in expr) {
-                        Console.WriteLine(content);
-                    }    
-                }
+                // Console.WriteLine("\nequations");
+                // Console.WriteLine("# of equations: " + arithmetic_equations.Count);
+                // foreach (var expr in arithmetic_equations) {
+                //     Console.WriteLine("Equation: ");
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                // }
             }
 
         }
