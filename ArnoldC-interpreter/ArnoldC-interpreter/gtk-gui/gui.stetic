@@ -5,8 +5,7 @@
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <widget-library name="../../../../../../../../../../usr/lib/monodevelop/AddIns/MonoDevelop.GtkCore/libstetic.dll" />
-    <widget-library name="../bin/Release/ArnoldC-interpreter.exe" internal="true" />
+    <widget-library name="../bin/Debug/ArnoldC-interpreter.exe" internal="true" />
   </import>
   <widget class="Gtk.Window" id="MainWindow" design-size="872 492">
     <property name="MemberName" />

@@ -11,7 +11,7 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 		  2252H: add variable regex and changed variable names for readability. 
 
 11-15-18, 0229H: took the working parts for variable and function names from Waldo's code. Not a merge, more of an update.
-  approx. 0317H: added better matches for macros and and integers. Integers can now be read next to the keywords YOU SET US UP, GET UP, and GET DOWN.
+  approx. 0317H: added better matches for macros and and integers. Integers can now be read next to the keywords YOU SET US UP, GET UP,					   and GET DOWN.
   		  0748H: encountered exceptions at lines 43 and 72, not sure how to fix it so ask Ma'am. Short description below. 
   		  		 Line 43: System.ArgumentException has been thrown parsing the contents of line 41.
   		  		 Line 72: System.ArgumentNullException has been thrown, value cannot be null.
@@ -34,6 +34,7 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 				 NOTE: variable names cannot have special characters like _/&/%/$ and so on. This counts as a bug, but the fix is a bit more advanced than we have time for at the moment.
 
 		  1957H: falling out with Waldo is the last straw in a haystack of issues so will resume code alone. Adjusted variable names for  			   readability again, for the last time.
+		  
 		  2343H: Fixed the bug where variable names are allowed to have capital letters. Due to time constraints, I might have to assume that 		   the user will adopt a more or less conventional variable naming scheme far from the likes of h4xx0r style.
 
 		  2352H: Partially fixed the bug where integer literals are read as integer literals and identifiers. Moved the conditional loops for 		   it into pre-existing keyword conditional loops.
@@ -65,7 +66,89 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 		  		 > BECAUSE I'M GOING TO SAY PLEASE isn't being read. (Fixed as of 1453H)
 
 11-28-18, 1920H: Improved the UI and added the first functionality for the Choose File button. 
-		  2000H: Removed functionality for Choose File button due to an error that I didn't know how to debug. Fixed button 	   and label sizes. Not entirely sure how to implement some functionalities but [deleted] that. 
+
+		  2000H: Removed functionality for Choose File button due to an error that I didn't know how to debug. Fixed button and label sizes. 		   Not entirely sure how to implement some functionalities but [deleted] that. 
+
+11-29-18, 0344H: Tried to make code block for addressing the last unresolved error found on 11-22-18 at 1448H. Did not work.
+
+		  0412H: Successfully made separate class for lexical analyzer. Will probably have to put the syntax and semantic analyzer in that 	 		same class due to time constraints. Will also have to work around the last error that I mentioned.
+
+		  0509H: Tried to fiddle with it more. Still not working. Naiirita na ako tbh.
+		  0519H: Ayaw niya talaga mumsh. One last try, tas magi-iba na ako ng game plan.
+		  0534H: Mumsh ayaw talaga. Aayusin ko na lang gamit syntax analyzer, tutal inuupdate naman nun yung symbol table.
+
+		  1200H: Improved the Lexer class. It now has a method that will return a dictionary of lexemes for the syntax analyzer.
+
+		  1252H: Parser can now (properly?) detect main method keywords IT'S SHOWTIME and YOU HAVE BEEN TERMINATED. Based process off of Team 		 PLA LOLcode interpreter. Checked https://www.geeksforgeeks.org/symbol-table-compiler/ and it doesn't say that this knowledge 		 should be add to the symbol table so will leave it alone for now.
+
+		  1311H: Tried to make a master parse_file() function that will do all parser methods in one function. Not sure if it's working or 		   infinite looping so will leave it alone for the meantime. As for string/variable identifier error mentioned earlier, might 		   just ignore it? Wil explain the logic at a later date.
+
+		  1343H: Error in the arithmetic parser, but nothing a bit more time won't fix.
+
+12-1-18, 1024H: Beginning proper work a day late, didn't finish reviewer on time, too tired. Ma'am suggests that I save each string then 					check if it's a variable identifier or something like that, but no luck on my end. Will have to try either skirting around the 				   wrong line in the lexeme_dict (which is going to take up a lot of code) or making an algorithm to remove the offending lines				    from the lexeme_dict. I think the latter will be more effective. No progress on UI yet. If I'm feeling my way anywhere, it's 				 with the UI.
+
+		 1042H: Figured out how to access individual dictionary entries. The latter option of making an algorithm to remove offending lines 	   just might be feasible.
+
+		 1100H: Encountered SystemInvalidOperationException while removing the offending line from the dictionary. Researched possible cures 		and found one suggesting that I make a copy of the dictionary then iterate over that, and remove the target from the original 		 dictionary once it's found in the copy. Link in references section.
+
+		 1110H: Successfully removed the offending line, ready to test with parser.
+
+		 1121H: Fix works well enough so far, but will have to adjust and debug parser methods. Won't check "debug lexical analyzer error" off the to-do list just yet, though. I suspect there's a catch.
+
+		 1217H: Came back from food break to an error in main_method(). Wrong item gets written to the expression list. Must be remedied.
+
+		 1232H: I found the catch I was talking about earlier. I'll have to update the original copy of the lexeme dictionary to handle the methods in the parser.
+
+12-2-18, 0826H: Can't change the value of a key in a dictionary, so will have to edit the entire thing before putting it in the dictionary. 				[deleted] this pero [deleted] Ateneo more huhu ba't sila ganyan.
+	
+		 0856H: FIXED THE LEXICAL ANALYZER ERROR WOOO GO UP MBT KUNG NAIRAOS NIYO KAYA KO RIN WOOO okay back to work.
+
+		 1205H: Reset program version but forgot to copy of readme.txt hays. Having trouble accessing lists in lists.
+
+		 1253H: Successfully added assign_var() functionality. I might cry pero konti lang.
+
+		 1341H: Found new error while fixing talk_to_the_hand(). Strings like "3" are being read as integer literals.
+
+		 1350H: Fixed the error. Work continues.
+
+		 1354H: Successfully added talk_to_the_hand() functionality. 
+
+		 1410H: Food break. Currently working on reassign_variable() functionality because it needs to be in order before the arithemtic_ops() 		  functionality can get anywhere.
+
+		 1531H: Finished reassign_variable() functionality! [deleted] baka keri nga
+
+		 1604H: Finished arithmetic_ops() functionality! [deleted] iiyak na talaga ako baka keri nga. 
+		 1605H: Notes for what I have left to finish (because I might forget by the time I come back):
+		 			> function in Parser.cs to update the symbol table
+		 			> start semantic analyzer yay!!
+		 			> more work on UI
+
+12-3-18, 0718H: Slept too long. Implemented the update_symbol_table() function in Parser.cs. Currently it reads assigned variables.
+
+12-4-18, 0608H: Found issues with syntax analyzer that'll make it harder to work with semantic analyzer. Been working on them since approx. 				0530H.
+
+		 0821H: Fixed the first half of the issues with the syntax analyzer. Pwede na ako pumunta ng 8:30 exam with a clear conscience.
+
+		 1209H: Separated expressions into re/assignment, print statement, and arithmetic lists. If the main method is wrong from the start, 		the program should produce an error. If not then it will continue to parse the file. Just have to adjust arithmetic expression 		  reading and the syntax analyzer should be truly ready.
+
+		 1255H: Found yet another bug in the reassign_variable() function, but after fiddling with it for nearly an hour I think the semantic 		 analyzer can do a better job of fixing it.
+
+		 1325H: Syntax analyzer can now detect equations. 
+
+		 1552H: Semantic analyzer should more or less know which statements to execute in what order. Very very basic.
+
+		 1947H: Moved the symbol table to semantic analyzer. Program can now print strings and integers but 	   not variable values, and can do basic math.
+
+		 2000H: Semantic analyzer can properly updated values in the symbol table now. I also realize that my 		 symbol table's probably missing several entries. 
+
+
+
+ERROR LIST:
+
+	(1) In main_method(), in Parser.cs: Wrong item getting written to expression list. [Fixed as of 0857H, 12-2-18]
+	(2) Missing keys in dictionary due to deletion. [Fixed as pf 0857H, 12-2-18]
+	(3) Strings like "3" are being read as integer literals. [Fixed as of 1350H, 12-2-18]
+
 
 
 COMMENTS ON SYNTAX:
@@ -88,3 +171,23 @@ COMMENTS ON SYNTAX:
 	> you can't put a GET TO THE CHOPPER loop and/or a HEY CHRISTMAS TREE variable declaration inside a previous GET TO THE CHOPPER loop
 	> you can't put a print statement between HEY CHRISTMAS TREE and YOU SET US UP
 	> you can't put if statements/if-else statements inside a GET TO THE CHOPPER loop
+
+References:
+
+	https://stackoverflow.com/questions/15057712/why-am-i-getting-an-exception-invalidoperationexception
+	https://www.dotnetperls.com/copy-dictionary (for individual questions regarding C# methods and syntax)
+	https://stackoverflow.com/questions/1937847/how-to-modify-key-in-a-dictionary-in-c-sharp
+	https://www.monodevelop.com/documentation/stetic-gui-designer/
+	https://www.monodevelop.com/documentation/building-a-simple-application-using-the-stetic-gui-designer/
+	https://www.youtube.com/watch?v=0P82vSqvt9k (VB and CSharp Create simple console and GTK apps in Monodevelop)
+	https://docs.microsoft.com/en-us/dotnet/api/system.int32.tryparse?redirectedfrom=MSDN&view=netframework-4.7.2#System_Int32_TryParse_System_String_System_Int32__
+	https://stackoverflow.com/questions/38053854/property-or-indexer-cannot-be-assigned-to-it-is-read-only
+	https://stackoverflow.com/questions/41316578/c-sharp-cannot-convert-from-int-to-string
+
+Unused References (delete thiese later):
+
+	https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/index?fbclid=IwAR3ZT_6JvGzoysRxgStT92l6Iww-Q6O7CiUf33A0XSjxhPX4xRl4LiPBMNY
+	https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/index?fbclid=IwAR11ExU9QK7-5v7AM49ig9ipVIjhsKj-7IWF-vaLzX8zKvR8XAMAsFpEq8c
+	https://docs.microsoft.com/en-us/dotnet/csharp/index?fbclid=IwAR088o7-rvCGgZUX6sHedW-x8cISJ1M25w2kjCvbFFpdN_UxPaIBm6dMeLU
+	https://gist.github.com/sanmadjack/be06c8cf8a6de1632ee3?fbclid=IwAR187hT7XNuBkDkuv3aKN8H9_1GZy4dKcfAmp33PY5ZqIX46ZSJa6ifUo6A
+	https://stackoverflow.com/questions/20612468/making-gtk-file-chooser-to-select-file-only?fbclid=IwAR2eFM3O2r_mtZEVK-Qj9FTft37aXjd9-fiLUM271r6UYfkxQw-qpSETrQw
