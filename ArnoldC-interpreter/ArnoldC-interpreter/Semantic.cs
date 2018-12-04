@@ -11,7 +11,7 @@ namespace ArnoldCinterpreter {
 
     	Dictionary<int, Tuple<string,string>> symbol_table = new Dictionary<int, Tuple<string,string>>();
     	int variable_value = 0;
-    	int i = 0;
+    	int i = 0;         // for indexing
 
     	public Dictionary<int, Tuple<string,string>> get_symbol_table() {
     		return symbol_table;
@@ -57,7 +57,7 @@ namespace ArnoldCinterpreter {
 
     					do {
 
-    						is_a_num = Int32.TryParse(expr[j], out temp);
+    						is_a_num = Int32.TryParse(expr[j], out temp); // converts strings to int
 
     						if (is_a_num) {
     							if (expr[j-1] == "GET UP") {
@@ -86,6 +86,7 @@ namespace ArnoldCinterpreter {
 
     					Dictionary<int, Tuple<string,string>> st_copy = new Dictionary<int, Tuple<string,string>>(symbol_table);
 
+                        // still the same dictionary issues here
     					foreach (var item in st_copy) {
     						if (item.Value.Item1 == variable_name) {
     							int temp_key = item.Key;

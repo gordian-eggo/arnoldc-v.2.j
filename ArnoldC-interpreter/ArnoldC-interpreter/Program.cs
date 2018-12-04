@@ -13,10 +13,10 @@ namespace ArnoldCinterpreter {
 
         static void Main(string[] args) {
 
-            // Application.Init();
-            // MainWindow win = new MainWindow();
-            // win.Show();
-            // Application.Run();
+            Application.Init();
+            MainWindow win = new MainWindow();
+            win.Show();
+            Application.Run();
 
             Lexer lexer = new Lexer(); 
             Parser parser = new Parser();
@@ -80,8 +80,10 @@ namespace ArnoldCinterpreter {
             }
 
 
-            semantic_analyzer.run_program(program_expressions, print_statements, assignment_expressions, 
+            if (parser.valid_main_method == true) {
+                semantic_analyzer.run_program(program_expressions, print_statements, assignment_expressions, 
                 reassign_statements, arithmetic_equations);
+            }
 
             // uncomment to check symbol table
             // Console.WriteLine("symbol table data");

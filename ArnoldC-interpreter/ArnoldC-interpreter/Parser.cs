@@ -10,16 +10,6 @@ namespace ArnoldCinterpreter {
 
     public class Parser {
 
-    	// public Dictionary<int, Tuple<string, string>> symbol_table /* = new Dictionary<int, Tuple<string, string>>();*/
-    	// {
-    	// 	get {
-    	// 		return symbol_table;
-    	// 	}
-    	// 	set {
-    	// 		new Dictionary<int, Tuple<string, string>>();
-    	// 	}
-    	// } 
-
     	// lists for making the semantic analyzer's life easier
     	List<List<string>> program_expressions = new List<List<string>>();
     	List<List<string>> assignment_expressions = new List<List<string>>();
@@ -27,8 +17,9 @@ namespace ArnoldCinterpreter {
     	List<List<string>> print_expressions = new List<List<string>>();		
     	List<List<string>> math_expressions = new List<List<string>>();
 		public bool valid_main_method;
-		int i = 1;
 
+		// getters
+		// I understand C# has its own cute syntax for this but I've always been a Java girl dito ako kampante
 		public List<List<string>> get_assignment_expressions() {
 			return assignment_expressions;
 		}
@@ -45,10 +36,6 @@ namespace ArnoldCinterpreter {
 			return math_expressions;
 		}
 
-		// public Dictionary<int, Tuple<string, string>> get_symbol_table() {
-		// 	return symbol_table;
-		// }
-
 		public List<List<string>> get_program_expressions() {
 			return program_expressions;
 		}
@@ -56,12 +43,22 @@ namespace ArnoldCinterpreter {
 		public void fill_program_expressions(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
 			// this is everything you have to do in something resembling order
+			// a very technical to-do list
 
 			List<string> expr = new List<string>();
 
 			for (int i = 0; i < lexeme_collection.Count; i++) {
 
 				if (lexeme_collection[i].Item2 == "HEY CHRISTMAS TREE")	{
+
+					/*
+
+						Just keep adding strings to an expression then add a copy
+						of that expression to the list. Why a copy and not the original?
+						I think it's because the original gets overwritten a lot but the 
+						copy only lives up until it gets added to the list. Something like that.
+
+					*/
 					
 					string hey_christmas_tree = lexeme_collection[i].Item2;
 					string hct_partner = lexeme_collection[i + 1].Item2;
@@ -140,7 +137,8 @@ namespace ArnoldCinterpreter {
 
 			if (main_method_expr.Contains("IT'S SHOWTIME") && main_method_expr.Contains("YOU HAVE BEEN TERMINATED")) {
 				valid_main_method = true;
-				// program_expressions.Add(main_method_expr);
+				// didn't add the expression to anything in this case
+				// just needed it to provide a truth value
 			} else if (!main_method_expr.Contains("IT'S SHOWTIME")) {
 				Console.WriteLine("Error: Invalid main method. Missing keyword IT'S SHOWTIME.");
 				valid_main_method = false;
@@ -190,7 +188,7 @@ namespace ArnoldCinterpreter {
 			
 							if (assign_var_size == expression_size) {
 								/*
-									Because of copy issues, I had to make a copy of the listthen add the copy to the 
+									Because of copy issues, I had to make a copy of the list then add the copy to the 
 									list of program expressions so as not to have problems.
 								*/
 								List<string> copy = new List<string>(assign_var);
@@ -199,6 +197,9 @@ namespace ArnoldCinterpreter {
 
 							}
 
+						} else {
+							Console.WriteLine("Error: missing integer value.");
+							break;
 						}
 
 					} else {
@@ -290,20 +291,18 @@ namespace ArnoldCinterpreter {
     			if (lexeme.Value.Item2 == "GET TO THE CHOPPER") {
     				temp_str = lexeme.Value.Item2;
     				reassign_var.Add(temp_str);
-    				// total_piece_count = total_piece_count + 1;
+
 
     				if ((lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") 			// pwede pala yung ganitong syntax wow
     					|| (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal")) {
     
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
 						reassign_var.Add(temp_str);
-						// total_piece_count = total_piece_count + 1;
 
 						if (lexeme_collection[lexeme.Key + 2].Item2 == "HERE IS MY INVITATION") {
     
 							temp_str = lexeme_collection[lexeme.Key + 2].Item2;
 							reassign_var.Add(temp_str);
-							// total_piece_count = total_piece_count + 1;
 
 							if ((lexeme_collection[lexeme.Key + 3].Item1 == "Variable identifier") 
 								|| (lexeme_collection[lexeme.Key + 3].Item1 == "Integer literal")) {
@@ -327,7 +326,7 @@ namespace ArnoldCinterpreter {
     			} else if (lexeme.Value.Item2 == "ENOUGH TALK") {
     				temp_str = lexeme.Value.Item2;
     				reassign_var.Add(temp_str);
-    				// total_piece_count = total_piece_count + 1;
+
     				group_count = group_count + 1;
     			}
 
@@ -354,10 +353,8 @@ namespace ArnoldCinterpreter {
 			List<string> arithmetic_expr = new List<string>();
 			List<string> equation = new List<string>();
 
-			string temp_str;
-			int math_expr_size = 2;				// Count() is a LINQ extension method that does something I'm not entirely sure of
-												// so used .Count instead
-			int total_piece_count = 0;
+			string temp_str;				// Count() is a LINQ extension method that does something I'm not entirely sure of		
+			int total_piece_count = 0;		// so used .Count instead
 			int group_count = 0;
 
 			foreach (KeyValuePair<int, Tuple<string, string>> lexeme in lexeme_collection) {
@@ -497,7 +494,6 @@ namespace ArnoldCinterpreter {
 				this.talk_to_the_hand(lexeme_collection);
 				this.reassign_variable(lexeme_collection);
 				this.arithmetic_ops(lexeme_collection);
-				// this.update_symbol_table(assignment_expressions, lexeme_collection);
 			}
 		}    	
 
