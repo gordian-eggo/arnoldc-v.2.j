@@ -128,7 +128,13 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 12-4-18, 0608H: Found issues with syntax analyzer that'll make it harder to work with semantic analyzer. Been working on them since approx. 				0530H.
 
 		 0821H: Fixed the first half of the issues with the syntax analyzer. Pwede na ako pumunta ng 8:30 exam with a clear conscience.
+
 		 1209H: Separated expressions into re/assignment, print statement, and arithmetic lists. If the main method is wrong from the start, 		the program should produce an error. If not then it will continue to parse the file. Just have to adjust arithmetic expression 		  reading and the syntax analyzer should be truly ready.
+
+		 1255H: Found yet another bug in the reassign_variable() function, but after fiddling with it for nearly an hour I think the semantic 		 analyzer can do a better job of fixing it.
+
+		 1325H: Syntax analyzer can now detect equations. 
+
 
 
 ERROR LIST:

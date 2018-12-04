@@ -28,41 +28,45 @@ namespace ArnoldCinterpreter {
             
             parser.parse_file(lexeme_dictionary);
 
-            Console.WriteLine("symbol table data");
-            foreach (var token in symbol_table) {
-                Console.WriteLine(token);
-            }
+            // uncomment to check contents of statement lists
+            if (parser.valid_main_method == true) {
+                // Console.WriteLine("symbol table data");
+                // foreach (var token in symbol_table) {
+                //     Console.WriteLine(token);
+                // }
 
-            Console.WriteLine("\n");
-            Console.WriteLine("print statements");
-            foreach (var expr in print_statements) {
-                foreach (var content in expr) {
-                    Console.WriteLine(content);
-                }    
-            }
+                // Console.WriteLine("\n");
+                // Console.WriteLine("print statements");
+                // foreach (var expr in print_statements) {
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                // }
 
-            Console.WriteLine("\n");
-            Console.WriteLine("assignment expressions");
-            foreach (var expr in assignment_expressions) {
-                foreach (var content in expr) {
-                    Console.WriteLine(content);
-                }    
-            }
+                // Console.WriteLine("\n");
+                // Console.WriteLine("assignment expressions");
+                // foreach (var expr in assignment_expressions) {
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                // }
 
-            Console.WriteLine("\nreassign statements");
-            foreach (var expr in reassign_statements) {
-                Console.WriteLine("Statement: ");
-                foreach (var content in expr) {
-                    Console.WriteLine(content);
-                }    
-            }
+                // Console.WriteLine("\nreassign statements");
+                // foreach (var expr in reassign_statements) {
+                //     Console.WriteLine("Statement: ");
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                // }
 
-            Console.WriteLine("\nequations");
-            foreach (var expr in arithmetic_equations) {
-                foreach (var content in expr) {
-                    Console.WriteLine(content);
-                }    
-                Console.WriteLine("next equation");
+                Console.WriteLine("\nequations");
+                Console.WriteLine("# of equations: " + arithmetic_equations.Count);
+                foreach (var expr in arithmetic_equations) {
+                    Console.WriteLine("Equation: ");
+                    foreach (var content in expr) {
+                        Console.WriteLine(content);
+                    }    
+                }
             }
 
         }

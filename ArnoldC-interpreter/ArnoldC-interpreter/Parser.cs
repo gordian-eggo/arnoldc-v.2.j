@@ -16,7 +16,7 @@ namespace ArnoldCinterpreter {
     	List<List<string>> reassign_expressions = new List<List<string>>();	
     	List<List<string>> print_expressions = new List<List<string>>();		
     	List<List<string>> math_expressions = new List<List<string>>();
-		bool valid_main_method;
+		public bool valid_main_method;
 		int i = 1;
 
 		public List<List<string>> get_assignment_expressions() {
@@ -206,40 +206,44 @@ namespace ArnoldCinterpreter {
     			if (lexeme.Value.Item2 == "GET TO THE CHOPPER") {
     				temp_str = lexeme.Value.Item2;
     				reassign_var.Add(temp_str);
-    				total_piece_count = total_piece_count + 1;
+    				// total_piece_count = total_piece_count + 1;
 
     				if ((lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier") 			// pwede pala yung ganitong syntax wow
     					|| (lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal")) {
     
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
 						reassign_var.Add(temp_str);
-						total_piece_count = total_piece_count + 1;
+						// total_piece_count = total_piece_count + 1;
 
 						if (lexeme_collection[lexeme.Key + 2].Item2 == "HERE IS MY INVITATION") {
     
 							temp_str = lexeme_collection[lexeme.Key + 2].Item2;
 							reassign_var.Add(temp_str);
-							total_piece_count = total_piece_count + 1;
+							// total_piece_count = total_piece_count + 1;
 
 							if ((lexeme_collection[lexeme.Key + 3].Item1 == "Variable identifier") 
 								|| (lexeme_collection[lexeme.Key + 3].Item1 == "Integer literal")) {
     
-    							// Console.WriteLine(lexeme_collection[lexeme.Key + 3].Item1 + " " + lexeme_collection[lexeme.Key + 3].Item2);
-    							// Console.WriteLine("MUMSH DAFUQ NAGPALIT LANG AKO NG INDEX");
 								temp_str = lexeme_collection[lexeme.Key + 3].Item2;
 								reassign_var.Add(temp_str);
 								total_piece_count = total_piece_count + 3;
 	
+							} else {
+								Console.WriteLine("Error: missing variable or integer. Usage: HERE IS MY INVITATION <variable> | HERE IS MY INVITATION <integer>");
+								break;
 							}
 
-						}
+						} else { Console.WriteLine("Error: missing keyword HERE IS MY INVITATION.");}
 
+					} else { 
+						Console.WriteLine("Error: missing variable. Usage: GET TO THE CHOPPER <variable>");
+						break;
 					}
 
     			} else if (lexeme.Value.Item2 == "ENOUGH TALK") {
     				temp_str = lexeme.Value.Item2;
     				reassign_var.Add(temp_str);
-    				total_piece_count = total_piece_count + 1;
+    				// total_piece_count = total_piece_count + 1;
     				group_count = group_count + 1;
     			}
 
@@ -264,6 +268,7 @@ namespace ArnoldCinterpreter {
 			
 			List<List<string>> temp = new List<List<string>>();
 			List<string> arithmetic_expr = new List<string>();
+			List<string> equation = new List<string>();
 
 			string temp_str;
 			int math_expr_size = 2;				// Count() is a LINQ extension method that does something I'm not entirely sure of
@@ -275,21 +280,21 @@ namespace ArnoldCinterpreter {
 				if (lexeme.Value.Item2 == "GET UP") {
 
 					temp_str = lexeme.Value.Item2;
-					arithmetic_expr.Add(temp_str);
+					equation.Add(temp_str);
 					total_piece_count = total_piece_count + 1;
 
 					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
 						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
 
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
-						arithmetic_expr.Add(temp_str);
+						equation.Add(temp_str);
 						total_piece_count = total_piece_count + 1;						
-						group_count = group_count + 1;
 
-						if (arithmetic_expr.Count == math_expr_size) {
-							List<string> copy = new List<string>(arithmetic_expr);
+						if (lexeme_collection[lexeme.Key + 2].Item2 == "ENOUGH TALK") {
+							group_count = group_count + 1;
+							List<string> copy = new List<string>(equation);
 							temp.Add(copy);
-							arithmetic_expr.Clear();
+							equation.Clear();
 						}
 
 					} else {
@@ -300,21 +305,21 @@ namespace ArnoldCinterpreter {
 				} else if (lexeme.Value.Item2 == "GET DOWN") {
 
 					temp_str = lexeme.Value.Item2;
-					arithmetic_expr.Add(temp_str);
+					equation.Add(temp_str);
 					total_piece_count = total_piece_count + 1;
 
 					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
 						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
 
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
-						arithmetic_expr.Add(temp_str);
+						equation.Add(temp_str);
 						total_piece_count = total_piece_count + 1;						
-						group_count = group_count + 1;
 
-						if (arithmetic_expr.Count == math_expr_size) {
-							List<string> copy = new List<string>(arithmetic_expr);
+						if (lexeme_collection[lexeme.Key + 2].Item2 == "ENOUGH TALK") {
+							group_count = group_count + 1;
+							List<string> copy = new List<string>(equation);
 							temp.Add(copy);
-							arithmetic_expr.Clear();
+							equation.Clear();
 						}
 
 					} else {
@@ -325,21 +330,21 @@ namespace ArnoldCinterpreter {
 				} else if (lexeme.Value.Item2 == "YOU'RE FIRED") { 
 
 					temp_str = lexeme.Value.Item2;
-					arithmetic_expr.Add(temp_str);
+					equation.Add(temp_str);
 					total_piece_count = total_piece_count + 1;
 
 					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
 						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
 
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
-						arithmetic_expr.Add(temp_str);
+						equation.Add(temp_str);
 						total_piece_count = total_piece_count + 1;						
-						group_count = group_count + 1;
 
-						if (arithmetic_expr.Count == math_expr_size) {
-							List<string> copy = new List<string>(arithmetic_expr);
+						if (lexeme_collection[lexeme.Key + 2].Item2 == "ENOUGH TALK") {
+							group_count = group_count + 1;
+							List<string> copy = new List<string>(equation);
 							temp.Add(copy);
-							arithmetic_expr.Clear();
+							equation.Clear();
 						}
 
 					} else {
@@ -350,21 +355,21 @@ namespace ArnoldCinterpreter {
 				} else if (lexeme.Value.Item2 == "HE HAD TO SPLIT") {
 
 					temp_str = lexeme.Value.Item2;
-					arithmetic_expr.Add(temp_str);
+					equation.Add(temp_str);
 					total_piece_count = total_piece_count + 1;
 
 					if ((lexeme_collection[lexeme.Key + 1].Item1 == "Integer literal") ||
 						(lexeme_collection[lexeme.Key + 1].Item1 == "Variable identifier")) {
 
 						temp_str = lexeme_collection[lexeme.Key + 1].Item2;
-						arithmetic_expr.Add(temp_str);
+						equation.Add(temp_str);
 						total_piece_count = total_piece_count + 1;						
-						group_count = group_count + 1;
 
-						if (arithmetic_expr.Count == math_expr_size) {
-							List<string> copy = new List<string>(arithmetic_expr);
+						if (lexeme_collection[lexeme.Key + 2].Item2 == "ENOUGH TALK") {
+							group_count = group_count + 1;
+							List<string> copy = new List<string>(equation);
 							temp.Add(copy);
-							arithmetic_expr.Clear();
+							equation.Clear();
 						}
 
 					} else {
@@ -376,12 +381,11 @@ namespace ArnoldCinterpreter {
 
 			}
 
+
 			if (group_count != 0) {
-				if ((total_piece_count / group_count) == math_expr_size) {
-		    		foreach (var list in temp) {
-		               	math_expressions.Add(list);
-		           	}
-		    	}
+		    	foreach (var list in temp) {
+		            math_expressions.Add(list);
+		        }
 			}
 
 		}    	
