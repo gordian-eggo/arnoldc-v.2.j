@@ -262,14 +262,21 @@ namespace ArnoldCinterpreter {
             // foreach (KeyValuePair<int, Tuple<string, string>> item in lexeme_dict) {
             //     Console.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
             // }
+            // Console.WriteLine("\n");
 
             // make a copy of the original lexeme dictionary and use that to edit the original dictionary
             Dictionary<int, Tuple<string, string>> error_fix_copy = new Dictionary<int, Tuple<string, string>>(lexeme_dict);
 
-            // removing the error using the dictionary copy
+            // removing the errors using the dictionary copy
             foreach (KeyValuePair<int, Tuple<string, string>> item in error_fix_copy) {
                 if ((item.Value.Item2 == "TALK TO THE HAND") && (error_fix_copy[item.Key + 2].Item1 == "String literal")) {
                     if (error_fix_copy[item.Key + 1].Item1 == "Variable identifier") {
+                        try {
+                            lexeme_dict.Remove(item.Key + 1);
+                        } catch (Exception e) {
+                            Console.WriteLine(e);
+                        }
+                    } else  if (error_fix_copy[item.Key + 1].Item1 == "Integer literal") {
                         try {
                             lexeme_dict.Remove(item.Key + 1);
                         } catch (Exception e) {
@@ -285,7 +292,7 @@ namespace ArnoldCinterpreter {
             Dictionary<int, Tuple<string, string>> final_lexeme_dict = new Dictionary<int, Tuple<string, string>>();
 
             // use this for loop to put the edited values in the final lexeme dictionary
-            for (int j = 1; j < numbering_fix_copy.Count; j++) {
+            for (int j = 0; j < numbering_fix_copy.Count; j++) {
                 string lexeme = numbering_fix_copy[numbering_fix_copy.Keys.ElementAt(j)].Item1;
                 string lexeme_value = numbering_fix_copy[numbering_fix_copy.Keys.ElementAt(j)].Item2;
                 var token = Tuple.Create(lexeme, lexeme_value);
@@ -293,9 +300,10 @@ namespace ArnoldCinterpreter {
                 final_lexeme_dict.Add(j, token);
             }
 
-            foreach (KeyValuePair<int, Tuple<string, string>> item in final_lexeme_dict) {
-                Console.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
-            }
+            // uncomment to check contents of final lexeme dictionary
+            // foreach (KeyValuePair<int, Tuple<string, string>> item in final_lexeme_dict) {
+            //     Console.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
+            // }
 
             return final_lexeme_dict;
 

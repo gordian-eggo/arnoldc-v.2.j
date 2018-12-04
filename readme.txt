@@ -11,7 +11,7 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 		  2252H: add variable regex and changed variable names for readability. 
 
 11-15-18, 0229H: took the working parts for variable and function names from Waldo's code. Not a merge, more of an update.
-  approx. 0317H: added better matches for macros and and integers. Integers can now be read next to the keywords YOU SET US UP, GET UP, and GET DOWN.
+  approx. 0317H: added better matches for macros and and integers. Integers can now be read next to the keywords YOU SET US UP, GET UP,					   and GET DOWN.
   		  0748H: encountered exceptions at lines 43 and 72, not sure how to fix it so ask Ma'am. Short description below. 
   		  		 Line 43: System.ArgumentException has been thrown parsing the contents of line 41.
   		  		 Line 72: System.ArgumentNullException has been thrown, value cannot be null.
@@ -103,6 +103,37 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 	
 		 0856H: FIXED THE LEXICAL ANALYZER ERROR WOOO GO UP MBT KUNG NAIRAOS NIYO KAYA KO RIN WOOO okay back to work.
 
+		 1205H: Reset program version but forgot to copy of readme.txt hays. Having trouble accessing lists in lists.
+
+		 1253H: Successfully added assign_var() functionality. I might cry pero konti lang.
+
+		 1341H: Found new error while fixing talk_to_the_hand(). Strings like "3" are being read as integer literals.
+
+		 1350H: Fixed the error. Work continues.
+
+		 1354H: Successfully added talk_to_the_hand() functionality. 
+
+		 1410H: Food break. Currently working on reassign_variable() functionality because it needs to be in order before the arithemtic_ops() 		  functionality can get anywhere.
+
+		 1531H: Finished reassign_variable() functionality! [deleted] baka keri nga
+
+		 1604H: Finished arithmetic_ops() functionality! [deleted] iiyak na talaga ako baka keri nga. 
+		 1605H: Notes for what I have left to finish (because I might forget by the time I come back):
+		 			> function in Parser.cs to update the symbol table
+		 			> start semantic analyzer yay!!
+		 			> more work on UI
+
+12-3-18, 0718H: Slept too long. Implemented the update_symbol_table() function in Parser.cs. Currently it reads assigned variables.
+
+12-4-18, 0608H: Found issues with syntax analyzer that'll make it harder to work with semantic analyzer. Been working on them since approx. 				0530H.
+
+		 0821H: Fixed the first half of the issues with the syntax analyzer. Pwede na ako pumunta ng 8:30 exam with a clear conscience.
+
+		 1209H: Separated expressions into re/assignment, print statement, and arithmetic lists. If the main method is wrong from the start, 		the program should produce an error. If not then it will continue to parse the file. Just have to adjust arithmetic expression 		  reading and the syntax analyzer should be truly ready.
+
+		 1255H: Found yet another bug in the reassign_variable() function, but after fiddling with it for nearly an hour I think the semantic 		 analyzer can do a better job of fixing it.
+
+		 1325H: Syntax analyzer can now detect equations. 
 
 
 
@@ -110,6 +141,7 @@ ERROR LIST:
 
 	(1) In main_method(), in Parser.cs: Wrong item getting written to expression list. [Fixed as of 0857H, 12-2-18]
 	(2) Missing keys in dictionary due to deletion. [Fixed as pf 0857H, 12-2-18]
+	(3) Strings like "3" are being read as integer literals. [Fixed as of 1350H, 12-2-18]
 
 
 
