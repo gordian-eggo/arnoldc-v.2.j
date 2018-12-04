@@ -9,7 +9,7 @@ public partial class MainWindow
 
 	private global::Gtk.HBox hbox4;
 
-	private global::Gtk.Button button5;
+	private global::Gtk.Button choose_file;
 
 	private global::Gtk.Label file_name;
 
@@ -41,7 +41,7 @@ public partial class MainWindow
 
 	private global::Gtk.VBox vbox4;
 
-	private global::Gtk.Label execute;
+	private global::Gtk.Button execute_button;
 
 	private global::Gtk.HSeparator hseparator1;
 
@@ -65,14 +65,14 @@ public partial class MainWindow
 		this.hbox4.Name = "hbox4";
 		this.hbox4.Spacing = 6;
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.button5 = new global::Gtk.Button();
-		this.button5.WidthRequest = 139;
-		this.button5.CanFocus = true;
-		this.button5.Name = "button5";
-		this.button5.UseUnderline = true;
-		this.button5.Label = global::Mono.Unix.Catalog.GetString("Choose FIle");
-		this.hbox4.Add(this.button5);
-		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.button5]));
+		this.choose_file = new global::Gtk.Button();
+		this.choose_file.WidthRequest = 139;
+		this.choose_file.CanFocus = true;
+		this.choose_file.Name = "choose_file";
+		this.choose_file.UseUnderline = true;
+		this.choose_file.Label = global::Mono.Unix.Catalog.GetString("Choose FIle");
+		this.hbox4.Add(this.choose_file);
+		global::Gtk.Box.BoxChild w1 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.choose_file]));
 		w1.Position = 0;
 		w1.Expand = false;
 		w1.Fill = false;
@@ -222,11 +222,13 @@ public partial class MainWindow
 		this.vbox4.Name = "vbox4";
 		this.vbox4.Spacing = 6;
 		// Container child vbox4.Gtk.Box+BoxChild
-		this.execute = new global::Gtk.Label();
-		this.execute.Name = "execute";
-		this.execute.LabelProp = global::Mono.Unix.Catalog.GetString("EXECUTE");
-		this.vbox4.Add(this.execute);
-		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.execute]));
+		this.execute_button = new global::Gtk.Button();
+		this.execute_button.CanFocus = true;
+		this.execute_button.Name = "execute_button";
+		this.execute_button.UseUnderline = true;
+		this.execute_button.Label = global::Mono.Unix.Catalog.GetString("EXECUTE");
+		this.vbox4.Add(this.execute_button);
+		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.execute_button]));
 		w18.Position = 0;
 		w18.Expand = false;
 		w18.Fill = false;
@@ -250,5 +252,6 @@ public partial class MainWindow
 		this.DefaultHeight = 492;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.choose_file.Clicked += new global::System.EventHandler(this.open_file_dialog);
 	}
 }

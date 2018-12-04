@@ -25,13 +25,14 @@
                 <property name="MemberName" />
                 <property name="Spacing">6</property>
                 <child>
-                  <widget class="Gtk.Button" id="button5">
+                  <widget class="Gtk.Button" id="choose_file">
                     <property name="MemberName" />
                     <property name="WidthRequest">139</property>
                     <property name="CanFocus">True</property>
                     <property name="Type">TextOnly</property>
                     <property name="Label" translatable="yes">Choose FIle</property>
                     <property name="UseUnderline">True</property>
+                    <signal name="Clicked" handler="open_file_dialog" />
                   </widget>
                   <packing>
                     <property name="Position">0</property>
@@ -286,9 +287,12 @@
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <child>
-              <widget class="Gtk.Label" id="execute">
+              <widget class="Gtk.Button" id="execute_button">
                 <property name="MemberName" />
-                <property name="LabelProp" translatable="yes">EXECUTE</property>
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">EXECUTE</property>
+                <property name="UseUnderline">True</property>
               </widget>
               <packing>
                 <property name="Position">0</property>

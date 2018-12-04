@@ -137,17 +137,20 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1552H: Semantic analyzer should more or less know which statements to execute in what order. Very very basic.
 
-		 1947H: Moved the symbol table to semantic analyzer. Program can now print strings and integers but 	   not variable values, and can do basic math.
+		 1947H: Moved the symbol table to semantic analyzer. Program can now print strings and integers but not variable values, and can do 	   basic math.
 
-		 2000H: Semantic analyzer can properly updated values in the symbol table now. I also realize that my 		 symbol table's probably missing several entries. 
+		 2000H: Semantic analyzer can properly updated values in the symbol table now. I also realize that my symbol table's probably missing 		 several entries. 
 
+		 2046H: Napagana ko yung open_file_dialog() omg pak ganern amazing
 
+		 2102H: Last few passes for documentation. Left UI lines uncommented, I am very proud of that one file dialog box.
 
 ERROR LIST:
 
 	(1) In main_method(), in Parser.cs: Wrong item getting written to expression list. [Fixed as of 0857H, 12-2-18]
 	(2) Missing keys in dictionary due to deletion. [Fixed as pf 0857H, 12-2-18]
 	(3) Strings like "3" are being read as integer literals. [Fixed as of 1350H, 12-2-18]
+	(4) Lexer *still* not reading @NO PROBLEMO and @I LIED huhu ano bang ginawa nung iba
 
 
 
@@ -172,6 +175,8 @@ COMMENTS ON SYNTAX:
 	> you can't put a print statement between HEY CHRISTMAS TREE and YOU SET US UP
 	> you can't put if statements/if-else statements inside a GET TO THE CHOPPER loop
 
+Github repo link: 
+
 References:
 
 	https://stackoverflow.com/questions/15057712/why-am-i-getting-an-exception-invalidoperationexception
@@ -183,11 +188,5 @@ References:
 	https://docs.microsoft.com/en-us/dotnet/api/system.int32.tryparse?redirectedfrom=MSDN&view=netframework-4.7.2#System_Int32_TryParse_System_String_System_Int32__
 	https://stackoverflow.com/questions/38053854/property-or-indexer-cannot-be-assigned-to-it-is-read-only
 	https://stackoverflow.com/questions/41316578/c-sharp-cannot-convert-from-int-to-string
-
-Unused References (delete thiese later):
-
-	https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/index?fbclid=IwAR3ZT_6JvGzoysRxgStT92l6Iww-Q6O7CiUf33A0XSjxhPX4xRl4LiPBMNY
-	https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/index?fbclid=IwAR11ExU9QK7-5v7AM49ig9ipVIjhsKj-7IWF-vaLzX8zKvR8XAMAsFpEq8c
-	https://docs.microsoft.com/en-us/dotnet/csharp/index?fbclid=IwAR088o7-rvCGgZUX6sHedW-x8cISJ1M25w2kjCvbFFpdN_UxPaIBm6dMeLU
-	https://gist.github.com/sanmadjack/be06c8cf8a6de1632ee3?fbclid=IwAR187hT7XNuBkDkuv3aKN8H9_1GZy4dKcfAmp33PY5ZqIX46ZSJa6ifUo6A
 	https://stackoverflow.com/questions/20612468/making-gtk-file-chooser-to-select-file-only?fbclid=IwAR2eFM3O2r_mtZEVK-Qj9FTft37aXjd9-fiLUM271r6UYfkxQw-qpSETrQw
+	http://docs.go-mono.com/index.aspx?link=T%3AGtk.FileChooserDialog  (Finally found this jusme antagal tagal ko tong hinahanap. Found it as a result of the previous link)
