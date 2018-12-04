@@ -137,6 +137,10 @@ ArnoldC.jar - the ArnoldC language pack for reference. Usage: ArnoldC [-run|-dec
 
 		 1552H: Semantic analyzer should more or less know which statements to execute in what order. Very very basic.
 
+		 1947H: Moved the symbol table to semantic analyzer. Program can now print strings and integers but 	   not variable values, and can do basic math.
+
+		 2000H: Semantic analyzer can properly updated values in the symbol table now. I also realize that my 		 symbol table's probably missing several entries. 
+
 
 
 ERROR LIST:
@@ -176,6 +180,9 @@ References:
 	https://www.monodevelop.com/documentation/stetic-gui-designer/
 	https://www.monodevelop.com/documentation/building-a-simple-application-using-the-stetic-gui-designer/
 	https://www.youtube.com/watch?v=0P82vSqvt9k (VB and CSharp Create simple console and GTK apps in Monodevelop)
+	https://docs.microsoft.com/en-us/dotnet/api/system.int32.tryparse?redirectedfrom=MSDN&view=netframework-4.7.2#System_Int32_TryParse_System_String_System_Int32__
+	https://stackoverflow.com/questions/38053854/property-or-indexer-cannot-be-assigned-to-it-is-read-only
+	https://stackoverflow.com/questions/41316578/c-sharp-cannot-convert-from-int-to-string
 
 Unused References (delete thiese later):
 

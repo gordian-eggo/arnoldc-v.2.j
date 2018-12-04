@@ -10,7 +10,16 @@ namespace ArnoldCinterpreter {
 
     public class Parser {
 
-    	Dictionary<int, Tuple<string, string>> symbol_table = new Dictionary<int, Tuple<string, string>>();
+    	// public Dictionary<int, Tuple<string, string>> symbol_table /* = new Dictionary<int, Tuple<string, string>>();*/
+    	// {
+    	// 	get {
+    	// 		return symbol_table;
+    	// 	}
+    	// 	set {
+    	// 		new Dictionary<int, Tuple<string, string>>();
+    	// 	}
+    	// } 
+
     	// lists for making the semantic analyzer's life easier
     	List<List<string>> program_expressions = new List<List<string>>();
     	List<List<string>> assignment_expressions = new List<List<string>>();
@@ -36,9 +45,9 @@ namespace ArnoldCinterpreter {
 			return math_expressions;
 		}
 
-		public Dictionary<int, Tuple<string, string>> get_symbol_table() {
-			return symbol_table;
-		}
+		// public Dictionary<int, Tuple<string, string>> get_symbol_table() {
+		// 	return symbol_table;
+		// }
 
 		public List<List<string>> get_program_expressions() {
 			return program_expressions;
@@ -465,29 +474,6 @@ namespace ArnoldCinterpreter {
 
 		}    	
 
-		public void update_symbol_table(List<List<string>> exprs, Dictionary<int, Tuple<string, string>> table) {
-
-			if (valid_main_method == true) {		// only puts in the initial values of the variables
-
-				foreach (var expr in exprs) {
-	
-					if (expr.Contains("HEY CHRISTMAS TREE")){
-						var new_variable = expr[1];
-						var new_value = expr[3];
-						var token = Tuple.Create(new_variable, new_value);
-
-						this.symbol_table.Add(this.i, token);
-						this.i = this.i + 1;	
-					}
-					
-				}
-
-			}
-
-			this.i = 1;
-			
-		} 
-
 		// did not do these due to time constraints
 		// public void logical_ops(Dictionary<int, Tuple<string, string>> lexeme_collection) {
 			
@@ -511,7 +497,7 @@ namespace ArnoldCinterpreter {
 				this.talk_to_the_hand(lexeme_collection);
 				this.reassign_variable(lexeme_collection);
 				this.arithmetic_ops(lexeme_collection);
-				this.update_symbol_table(assignment_expressions, lexeme_collection);
+				// this.update_symbol_table(assignment_expressions, lexeme_collection);
 			}
 		}    	
 

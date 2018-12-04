@@ -28,18 +28,13 @@ namespace ArnoldCinterpreter {
             List<List<string>> assignment_expressions = parser.get_assignment_expressions(); 
             List<List<string>> reassign_statements = parser.get_reassign_expressions(); 
             List<List<string>> arithmetic_equations = parser.get_math_expressions(); 
-            Dictionary<int, Tuple<string,string>> symbol_table = parser.get_symbol_table();
-
+            Dictionary<int, Tuple<string,string>> symbol_table = semantic_analyzer.get_symbol_table();
             bool check_comments = true;
             
             parser.parse_file(lexeme_dictionary);
 
             // uncomment to check contents of statement lists
             if (check_comments == true) {
-                Console.WriteLine("symbol table data");
-                foreach (var token in symbol_table) {
-                    Console.WriteLine(token);
-                }
 
                 // Console.WriteLine("program expressions\n");
                 // foreach (var expr in program_expressions) {
@@ -65,27 +60,34 @@ namespace ArnoldCinterpreter {
                 //     }    
                 // }
 
-                Console.WriteLine("\nreassign statements");
-                foreach (var expr in reassign_statements) {
-                    Console.WriteLine("Statement: ");
-                    foreach (var content in expr) {
-                        Console.WriteLine(content);
-                    }    
-                }
+                // Console.WriteLine("\nreassign statements");
+                // foreach (var expr in reassign_statements) {
+                //     Console.WriteLine("Statement: ");
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                // }
 
-                Console.WriteLine("\nequations");
-                Console.WriteLine("# of equations: " + arithmetic_equations.Count);
-                foreach (var expr in arithmetic_equations) {
-                    Console.WriteLine("Equation: ");
-                    foreach (var content in expr) {
-                        Console.WriteLine(content);
-                    }    
-                }
+                // Console.WriteLine("\nequations");
+                // Console.WriteLine("# of equations: " + arithmetic_equations.Count);
+                // foreach (var expr in arithmetic_equations) {
+                //     Console.WriteLine("Equation: ");
+                //     foreach (var content in expr) {
+                //         Console.WriteLine(content);
+                //     }    
+                // }
 
             }
 
 
-            semantic_analyzer.run_program(print_statements, assignment_expressions, reassign_statements, arithmetic_equations);
+            semantic_analyzer.run_program(program_expressions, print_statements, assignment_expressions, 
+                reassign_statements, arithmetic_equations);
+
+            // uncomment to check symbol table
+            // Console.WriteLine("symbol table data");
+            // foreach (var token in symbol_table) {
+            //     Console.WriteLine(token);
+            // }
 
 
         }
